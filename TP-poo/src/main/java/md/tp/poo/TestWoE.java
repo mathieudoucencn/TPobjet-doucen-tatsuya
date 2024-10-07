@@ -23,7 +23,6 @@ public class TestWoE {
             world.afficheMonde();
             jouer.tour(world);
             world.deplace();
-            
             if (perso.getPtVie() <= 0) {
                 System.out.println("game over");
                 gameOver = true;
