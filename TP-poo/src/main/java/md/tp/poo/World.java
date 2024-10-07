@@ -258,7 +258,7 @@ public class World {
         
         
         for (Creature c : creatures) {
-    if(c != jouer.getPersonnage()){
+        if(c != jouer.getPersonnage()){
         int x = c.getPos().getX();
         int y = c.getPos().getY();
 

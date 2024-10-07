@@ -12,7 +12,6 @@ public class TestWoE {
 
     public static void main(String[] args) {
         World world = World.getInstance();
-        world.creerMondeAlea();
 
         Jouer jouer = new Jouer();
         Personnage perso = jouer.choix(world);
