@@ -1,15 +1,15 @@
 package md.tp.poo;
 
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
+//import com.fasterxml.jackson.core.JsonProcessingException;
+//import com.fasterxml.jackson.databind.ObjectMapper;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.sql.*;
-import java.util.Properties;
-import java.util.UUID;
+//import java.io.File;
+//import java.io.FileInputStream;
+//import java.io.IOException;
+//import java.sql.*;
+//import java.util.Properties;
+//import java.util.UUID;
 
 public class DatabaseTools {
 /*
@@ -315,7 +315,10 @@ public class DatabaseTools {
         }
     }
 }
-   
+
+    
+
+>>>>>>> origin/main
     
 
    public static void removeWorld(String codename, String sauvegardeNom) {
@@ -362,7 +365,9 @@ public class DatabaseTools {
             e.printStackTrace();
         }
     }
+
     */
+
 }
 
 

@@ -2,8 +2,8 @@ package md.tp.poo;
 
 import java.util.Random;
 import java.util.ArrayList;
-import com.fasterxml.jackson.annotation.JsonIdentityInfo;
-import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+//import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+//import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 /** 
  * Classe qui représente le monde 
@@ -137,8 +137,6 @@ public class World {
         return null;
     }
     
-   
-  
 
     /**
      * Création aléatoire du monde avec créatures et objets
@@ -388,6 +386,7 @@ public class World {
         this.nom = nom;
     }
     
+
     /*
     public boolean isLoaded() {
         return loaded; 
@@ -411,6 +410,35 @@ public class World {
         this.jouer = other.jouer;
         // Copiez les autres champs si nécessaire
     }
-   */
+   
  
+
+    
+       
+/*
+    public boolean isLoaded() {
+        return loaded; 
+    }
+
+    public void setLoaded(boolean loaded) {
+        this.loaded = loaded;
+    }
+
+    public void copyFrom(World other) {
+        this.creatures.clear();
+        this.creatures.addAll(other.creatures);
+        this.personnages.clear();
+        this.personnages.addAll(other.personnages);
+        this.monstres.clear();
+        this.monstres.addAll(other.monstres);
+        this.objets.clear();
+        this.objets.addAll(other.objets);
+        this.positions.clear();
+        this.positions.addAll(other.positions);
+        this.jouer = other.jouer;
+        // Copiez les autres champs si nécessaire
+    }
+   
+   */
+
 }

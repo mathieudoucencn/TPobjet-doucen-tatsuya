@@ -21,15 +21,13 @@ public class TestWoE {
         boolean gameOver = false;
         while (!gameOver) {
             world.afficheMonde();
-            world.deplace();
-
+            jouer.tour(world);
+            world.deplace();            
             if (perso.getPtVie() <= 0) {
                 System.out.println("game over");
                 gameOver = true;
                 continue;
             }
-            world.afficheMonde();
-            jouer.tour(world);
         }
 
         /*

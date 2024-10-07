@@ -185,7 +185,7 @@ public class Jouer {
                 newPos.translate(-1, 0);
                 break;
             case "B":
-                newPos.translate(1, 0);
+                newPos.translate(1,0);
                 break;
             default:
                 System.out.println("Direction invalide.");
