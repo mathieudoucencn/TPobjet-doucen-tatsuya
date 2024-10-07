@@ -36,7 +36,6 @@ public class NuageToxique extends Objet implements Deplacable, Combattant {
     @Override
     public void deplace() {
         
-        System.out.println("Nuage toxique se deplace.");
         Random rand = new Random();
         int dx, dy;
         World world = World.getInstance();

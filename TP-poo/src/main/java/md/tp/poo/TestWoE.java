@@ -22,7 +22,7 @@ public class TestWoE {
         while (!gameOver) {
             world.afficheMonde();
             jouer.tour(world);
-            world.deplace();
+            world.deplace();            
             if (perso.getPtVie() <= 0) {
                 System.out.println("game over");
                 gameOver = true;

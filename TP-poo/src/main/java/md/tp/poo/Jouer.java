@@ -233,11 +233,11 @@ public class Jouer {
         if (cible != null) {
             personnage.combattre(cible);
             if (cible.getPtVie() <= 0) {
-                System.out.println(cible.getNom() + " a été vaincu !");
+                System.out.println(cible.getNom() + " a ete vaincu !");
                 world.removeCreature(cible);
             }
         } else {
-            System.out.println("Aucune cible à portée.");
+            System.out.println("Aucune cible a portee.");
         }
     }
 
@@ -251,7 +251,7 @@ public class Jouer {
         System.out.println("Votre inventaire :");
         inventaire.afficherInventaire();
 
-        System.out.println("Quel objet voulez-vous utiliser ? (entrez le numéro)");
+        System.out.println("Quel objet voulez-vous utiliser ? (entrez le numero)");
         InputStreamReader isr = new InputStreamReader(System.in);
         BufferedReader br = new BufferedReader(isr);
 
@@ -259,7 +259,7 @@ public class Jouer {
         try {
             choix = Integer.parseInt(br.readLine());
         } catch (IOException | NumberFormatException e) {
-            System.out.println("Entrée invalide.");
+            System.out.println("Entree invalide.");
             return;
         }
 

@@ -138,7 +138,6 @@ public class World {
     }
     
 
-
     /**
      * Création aléatoire du monde avec créatures et objets
      */
@@ -306,6 +305,12 @@ public class World {
                ((Personnage) c2).mettreAJourEffets();
            }
         }
+        
+        for (Objet o  : objets) {
+            if (o instanceof NuageToxique) {
+               ((NuageToxique)o).deplace();
+           }
+        }
         updatePos();
     }
 
@@ -381,6 +386,33 @@ public class World {
         this.nom = nom;
     }
     
+
+    /*
+    public boolean isLoaded() {
+        return loaded; 
+    }
+
+    public void setLoaded(boolean loaded) {
+        this.loaded = loaded;
+    }
+
+    public void copyFrom(World other) {
+        this.creatures.clear();
+        this.creatures.addAll(other.creatures);
+        this.personnages.clear();
+        this.personnages.addAll(other.personnages);
+        this.monstres.clear();
+        this.monstres.addAll(other.monstres);
+        this.objets.clear();
+        this.objets.addAll(other.objets);
+        this.positions.clear();
+        this.positions.addAll(other.positions);
+        this.jouer = other.jouer;
+        // Copiez les autres champs si nécessaire
+    }
+   
+ 
+
     
        
 /*
@@ -408,4 +440,5 @@ public class World {
     }
    
    */
+
 }
