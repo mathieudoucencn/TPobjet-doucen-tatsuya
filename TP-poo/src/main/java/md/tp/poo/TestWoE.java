@@ -16,6 +16,9 @@ public class TestWoE {
 
         Jouer jouer = new Jouer();
         Personnage perso = jouer.choix(world);
+        world.getCreatures().add(perso);
+        world.setJouer(jouer);
+        world.creerMondeAlea();
         
         boolean gameOver = false;
         while (!gameOver) {
