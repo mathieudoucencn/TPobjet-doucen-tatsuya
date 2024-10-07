@@ -176,16 +176,16 @@ public class Jouer {
 
         switch (dir) {
             case "G":
-                newPos.translate(-1, 0);
+                newPos.translate(0, -1);
                 break;
             case "D":
-                newPos.translate(1, 0);
-                break;
-            case "H":
                 newPos.translate(0, 1);
                 break;
+            case "H":
+                newPos.translate(-1, 0);
+                break;
             case "B":
-                newPos.translate(0, -1);
+                newPos.translate(1,0);
                 break;
             default:
                 System.out.println("Direction invalide.");

@@ -12,7 +12,6 @@ public class TestWoE {
 
     public static void main(String[] args) {
         World world = World.getInstance();
-
         Jouer jouer = new Jouer();
         Personnage perso = jouer.choix(world);
         world.getCreatures().add(perso);
