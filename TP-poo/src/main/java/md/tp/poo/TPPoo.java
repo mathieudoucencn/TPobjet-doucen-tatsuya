@@ -11,6 +11,7 @@ package md.tp.poo;
 public class TPPoo {
 
     public static void main(String[] args) {
-        System.out.println("Hello World!");
+        System.out.println("Hello!");
+        
     }
 }
