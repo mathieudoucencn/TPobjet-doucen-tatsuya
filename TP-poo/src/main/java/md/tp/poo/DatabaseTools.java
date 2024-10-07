@@ -12,7 +12,7 @@ import java.util.Properties;
 import java.util.UUID;
 
 public class DatabaseTools {
-
+/*
     public static Connection connect() {
         Properties props = new Properties();
         try {
@@ -315,8 +315,7 @@ public class DatabaseTools {
         }
     }
 }
-    
-*/
+   
     
 
    public static void removeWorld(String codename, String sauvegardeNom) {
@@ -363,6 +362,7 @@ public class DatabaseTools {
             e.printStackTrace();
         }
     }
+    */
 }
 
 

@@ -12,7 +12,6 @@ public class TestWoE {
 
     public static void main(String[] args) {
         World world = World.getInstance();
-
         Jouer jouer = new Jouer();
         Personnage perso = jouer.choix(world);
         world.getCreatures().add(perso);
@@ -22,15 +21,15 @@ public class TestWoE {
         boolean gameOver = false;
         while (!gameOver) {
             world.afficheMonde();
-            jouer.tour(world);
+            world.deplace();
 
             if (perso.getPtVie() <= 0) {
                 System.out.println("game over");
                 gameOver = true;
                 continue;
             }
-
-            world.deplace();
+            world.afficheMonde();
+            jouer.tour(world);
         }
 
         /*
