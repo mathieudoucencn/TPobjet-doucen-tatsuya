@@ -269,6 +269,7 @@ public class World {
                     carte[x][y] = "G";
                 }
             }
+
         }
         
         System.out.println("your position: " + jouer.getPersonnage().getPosition().getY() + "," + jouer.getPersonnage().getPosition().getX());
@@ -377,15 +378,45 @@ public class World {
 
             }
             for (Objet objet : objets) {
-                writer.write(objet.getTexteSauvegarde() + "\n");
+                if (objet instanceof NuageToxique) {
+                    NuageToxique n = (NuageToxique) objet;
+                    writer.write(n.getTexteSauvegarde() + "\n");
+                } else if (objet instanceof Epee) {
+                    Epee e = (Epee) objet;
+                    writer.write(e.getTexteSauvegarde() + "\n");
+                } else if (objet instanceof Epee) {
+                    Epee e = (Epee) objet;
+                    writer.write(e.getTexteSauvegarde() + "\n");
+                } else if (objet instanceof PotionSoin) {
+                    PotionSoin p = (PotionSoin) objet;
+                    writer.write(p.getTexteSauvegarde() + "\n");
+                } else if (objet instanceof Eau) {
+                    Eau e = (Eau) objet;
+                    writer.write(e.getTexteSauvegarde() + "\n");
+                }
+
             }
 
             if (jouer != null && jouer.getPersonnage() != null) {
                 writer.write("Jouer" + " " + jouer.getPersonnage().getNom() + " " + jouer.getPersonnage().getTexteSauvegarde() + "\n");
 
                 for (Utilisable o : jouer.getInventaire().getItems()) {
-                    Objet ob = (Objet) o;
-                    writer.write(ob.getTexteSauvegarde() + "\n");
+                    if (o instanceof NuageToxique) {
+                        NuageToxique n = (NuageToxique) o;
+                        writer.write(n.getTexteSauvegarde() + "\n");
+                    } else if (o instanceof Epee) {
+                        Epee e = (Epee) o;
+                        writer.write(e.getTexteSauvegarde() + "\n");
+                    } else if (o instanceof Epee) {
+                        Epee e = (Epee) o;
+                        writer.write(e.getTexteSauvegarde() + "\n");
+                    } else if (o instanceof PotionSoin) {
+                        PotionSoin p = (PotionSoin) o;
+                        writer.write(p.getTexteSauvegarde() + "\n");
+                    } else if (o instanceof Eau) {
+                        Eau e = (Eau) o;
+                        writer.write(e.getTexteSauvegarde() + "\n");
+                    }
                 }
             }
             System.out.println("Partie sauvegardee dans " + nomFichier);
@@ -407,6 +438,7 @@ public class World {
                 StringTokenizer token = new StringTokenizer(line);
                 if (token.hasMoreTokens()) {
                     String type = token.nextToken();
+
                     switch (type) {
                         case "Largeur":
                             this.largeur = Integer.parseInt(token.nextToken());
