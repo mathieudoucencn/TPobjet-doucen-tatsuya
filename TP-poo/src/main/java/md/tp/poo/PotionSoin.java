@@ -22,7 +22,7 @@ public class PotionSoin extends Objet implements Utilisable {
      * @param val Valeur de soin
      */
     public PotionSoin(Point2D p, int val) {
-        super(p);
+        super("PotionSoin",p);
         this.valSoin = val;
     }
 
@@ -32,7 +32,7 @@ public class PotionSoin extends Objet implements Utilisable {
     }
 
     public PotionSoin() {
-        super();
+        super("PotionSoin");
         this.valSoin = 20; 
     }
 
@@ -54,4 +54,5 @@ public class PotionSoin extends Objet implements Utilisable {
     public String toString() {
         return "Potion de soin [valeur de soin=" + valSoin + "]";
     }
+
 }

@@ -8,22 +8,20 @@ package md.tp.poo;
  *
  * @author woota
  */
-public abstract class Creature extends ElementDeJeu implements Deplacable{
+public abstract class Creature extends ElementDeJeu implements Deplacable {
     
-    protected String nom;
+    protected String typeNom;
     protected int ptVie;
     protected int degAtt;
     protected int ptPar;
     protected int pageAtt;
     protected int pagePar;
-    protected int distAttMax;
-    protected Point2D pos;
-    
-    //Méthodes
 
+    //Méthodes
     /**
-     * Constructeur avec paramètres
-     * @param n Nom de la créature
+     * Constructeur avec paramètres]
+     *
+     * @param n nom de type
      * @param pv Points de vie
      * @param dA Dégâts d'attaque
      * @param pPar Points de parade
@@ -31,42 +29,53 @@ public abstract class Creature extends ElementDeJeu implements Deplacable{
      * @param paPar Pourcentage de parade
      * @param p Position
      */
-    public Creature(String n, int pv, int dA, int pPar, int paAtt, int paPar, Point2D p){
-        this.nom = n;
+    public Creature(String n, int pv, int dA, int pPar, int paAtt, int paPar, Point2D p) {
+        super(p);
+        this.typeNom = n;
         this.ptVie = pv;
         this.degAtt = dA;
         this.ptPar = pPar;
         this.pageAtt = paAtt;
         this.pagePar = paPar;
-        this.pos = new Point2D(p);
+
     }
+
     /**
      * Constructeur par copie
+     *
      * @param c Creature a copier
      */
+    public Creature(Creature c) {
+        super(c);
+        this.typeNom = c.typeNom;
+        this.ptVie = c.ptVie;
+        this.degAtt = c.degAtt;
+        this.ptPar = c.ptPar;
+        this.pageAtt = c.pageAtt;
+        this.pagePar = c.pagePar;
+    }
 
-    public Creature(Creature c){
-        nom = c.nom;
-        ptVie = c.ptVie;
-        degAtt = c.degAtt;
-        ptPar = c.ptPar;
-        pageAtt = c.pageAtt;
-        pagePar = c.pagePar;
-        pos = c.pos;
+    public Creature(String n) {
+        super();
+        this.typeNom = n;
     }
     
-    public Creature(){
+    public Creature() {
+        super();
+    }
+
+    @Override
+    public void affiche() {
+        System.out.println(this.ptVie + ',' + this.degAtt + ','
+                + this.ptPar + ',' + this.pageAtt + ',' + this.pagePar);
+        this.getPosition().affiche();
+    }
+
+    public String getTypeNom() {
+        return typeNom;
     }
     
-    
-    public void affiche(){
-        System.out.println(this.nom + ',' + this.ptVie + ',' + this.degAtt + ','
-                + this.ptPar + ',' + this.pageAtt + ',' + this.pagePar + ',' +
-                this.distAttMax + ',');
-        this.pos.affiche();
-    }
-    
-    
+
     public int getPtVie() {
         return ptVie;
     }
@@ -107,48 +116,8 @@ public abstract class Creature extends ElementDeJeu implements Deplacable{
         this.pagePar = pagePar;
     }
 
-    public int getDistAttMax() {
-        return distAttMax;
+    public void removeCreature(World world) {
+        world.getCreatures().remove(this);
     }
 
-    public void setDistAttMax(int distAttMax) {
-        this.distAttMax = distAttMax;
-    }
-
-    public Point2D getPos() {
-        return pos;
-    }
-
-    public void setPos(Point2D pos) {
-        this.pos = pos;
-    }
-    
-    /**
-     *
-     * @return
-     */
-    public String getNom(){
-        return this.nom;
-    }
-    
-    /**
-     * Methode abstraite de deplacement
-     * 
-     */
-    @Override
-    public abstract void deplace();
-    
-    
-    /**
-     * 
-     * Methode de combat contre une autre creature.
-     * @param c Creature cible 
-     */
-    public void combattre(Creature c){
-    
-    
-    }   
-    
-    
 }
-    

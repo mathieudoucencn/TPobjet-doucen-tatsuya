@@ -9,24 +9,22 @@ package md.tp.poo;
  * @author mathi
  */
 public class TestWoE {
-
+    
     public static void main(String[] args) {
-        World world = World.getInstance();
-        Jouer jouer = new Jouer();
-        Personnage perso = jouer.choix(world);
-        world.getCreatures().add(perso);
-        world.setJouer(jouer);
+        World world = new World();
+        world.creationJouer("you");
+        world.getCreatures().add(world.getJouer().getPersonnage());
         world.creerMondeAlea();
         
         boolean gameOver = false;
         while (!gameOver) {
             world.afficheMonde();
-            jouer.tour(world);
+            world.tourDeJeu();
+            world.afficheMonde();
             world.deplace();            
-            if (perso.getPtVie() <= 0) {
+            if (world.getJouer().getPersonnage().getPtVie() <= 0) {
                 System.out.println("game over");
                 gameOver = true;
-                continue;
             }
         }
 

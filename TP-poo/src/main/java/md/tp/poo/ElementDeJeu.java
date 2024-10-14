@@ -8,17 +8,21 @@ package md.tp.poo;
  *
  * @author woota
  */
-
 /**
  * Super classe pour les éléments du jeu (creatures, objets).
  */
-
 public abstract class ElementDeJeu {
+
     protected Point2D position;
-/*
+
     public ElementDeJeu(Point2D position) {
         this.position = new Point2D(position);
     }
+
+    public ElementDeJeu(ElementDeJeu e) {
+        this.position = new Point2D(e.getPosition());
+    }
+    
 
     public ElementDeJeu() {
         this.position = new Point2D();
@@ -31,6 +35,6 @@ public abstract class ElementDeJeu {
     public void setPosition(Point2D position) {
         this.position = position;
     }
-*/
-    public abstract void affiche(); 
+
+    public abstract void affiche();
 }
