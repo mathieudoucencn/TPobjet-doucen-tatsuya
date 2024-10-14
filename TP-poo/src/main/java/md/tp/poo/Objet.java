@@ -16,48 +16,59 @@ package md.tp.poo;
 
 public abstract class Objet extends ElementDeJeu{
     
-    private String objet_id;
-    protected Point2D pos;
-    
+    protected String typeNom;
+
+        
     /**
-     * Constructeur avec position
-     * @param p Position de l'objet
+     * Constructeur avec position.
+     *
+     * @param n Nom du type d'objet.
+     * @param p Position de l'objet.
      */
-    public Objet(Point2D p){
-        this.pos = new Point2D(p);
+    public Objet(String n, Point2D p) {
+        super(p);  
+        this.typeNom = n;
     }
+
     /**
      * Constructeur par copie.
+     *
      * @param o Objet à copier.
      */
     public Objet(Objet o) {
-        this.pos = new Point2D(o.pos);
+        super(o);  
+        this.typeNom = o.typeNom;
     }
+
+    /**
+     * Constructeur avec seulement le nom du type d'objet.
+     *
+     * @param n Nom du type d'objet.
+     */
+    public Objet(String n) {
+        super();  
+        this.typeNom = n;
+    }
+
     /**
      * Constructeur par défaut
      */
-    public Objet(){
-        this.pos = new Point2D();
+    public Objet() {
+        super();  
     }
 
-    public Point2D getPos() {
-        return pos;
-    }
 
-    public void setPos(Point2D pos) {
-        this.pos = pos;
-    }
     
     public void affiche(){
         
     }
     
-    public String getObjet_id() {
-        return objet_id;
+    public void removeObjet(World world) {
+        world.getObjets().remove(this);
     }
-
-    public void setObjet_id(String objet_id) {
-        this.objet_id = objet_id;
+    
+    public String getTexteSauvegarde() {
+        return "Objet " + this.typeNom+ " " + position.getX() + " " + position.getY();
     }
 
     
@@ -67,32 +78,5 @@ public abstract class Objet extends ElementDeJeu{
      */
     public abstract void utiliser(Personnage p);
     
-    
-    /*
-    public void saveToDatabase(Connection conn, String sauvegardeId) throws SQLException {
-    String objetId = UUID.randomUUID().toString();
-
-    // `objet` テーブルにデータを保存
-    String objetSql = "INSERT INTO objet (objet_id, sauvegarde_id, pos_x, pos_y) VALUES (?, ?, ?, ?)";
-    try (PreparedStatement stmt = conn.prepareStatement(objetSql)) {
-        stmt.setString(1, objetId);
-        stmt.setString(2, sauvegardeId);
-        stmt.setInt(3, this.getPos().getX());
-        stmt.setInt(4, this.getPos().getY());
-        stmt.executeUpdate();
-    }
-/*
-    // `type_objet` テーブルにタイプを保存
-    String typeObjetSql = "INSERT INTO type_objet (type_id, objet_id, type_nom) VALUES (?, ?, ?)";
-    try (PreparedStatement stmt = conn.prepareStatement(typeObjetSql)) {
-        String typeId = UUID.randomUUID().toString();
-        stmt.setString(1, typeId);
-        stmt.setString(2, objetId);
-        stmt.setString(3, this.getClass().getSimpleName());
-        stmt.executeUpdate();
-    }
-}
-    */
-
-    
+   
 }

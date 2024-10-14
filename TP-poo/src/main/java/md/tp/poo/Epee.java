@@ -8,43 +8,43 @@ package md.tp.poo;
  *
  * @author woota
  */
-
 /**
  * Classe qui représente une epée
  */
-public class Epee extends Objet implements Utilisable{
-    
+public class Epee extends Objet implements Utilisable {
+
     private int duree;
     private int valDam;
-    
+
     /**
      * Constructeur avec position et valeur de soin.
+     *
      * @param p Position de la potion
      * @param valDam
      * @param duree
      */
-    
-     public Epee(Point2D p, int valDam, int duree) {
-        super(p);
+    public Epee(Point2D p, int valDam, int duree) {
+        super("Epee", p);
         this.valDam = valDam;
         this.duree = duree;
     }
-     
-     public Epee(Epee e) {
+
+    public Epee(Epee e) {
         super(e);
         this.valDam = e.valDam;
         this.duree = e.duree;
     }
-    
+
     public Epee() {
-        super();
+        super("Epee");
     }
+
     @Override
-    public void utiliser(Personnage p){
-        
-        if (p instanceof Guerrier){
+    public void utiliser(Personnage p) {
+
+        if (p instanceof Guerrier) {
             ((Guerrier) p).setBonusArme(this.valDam);
-        } else{
+        } else {
             System.out.println("ce personnage ne sait pas utiliser cette arme...");
         }
     }
@@ -64,8 +64,5 @@ public class Epee extends Objet implements Utilisable{
     public void setValDam(int valDam) {
         this.valDam = valDam;
     }
-
-    
-    
 
 }

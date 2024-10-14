@@ -9,34 +9,36 @@ package md.tp.poo;
  * @author woota
  */
 /**
- * Classe Epinard, un type spécifique de Nourriture qui donne un bonus sur degAtt.
+ * Classe Eau, un type spécifique de Nourriture qui donne un bonus sur degAtt.
  */
+public class Eau extends Nourriture {
 
-public class Epinard extends Nourriture {
-    
-        /**
+    /**
      * Constructeur avec position, effet, durée et caractéristique.
-     * @param p Position de l'épinard.
+     *
+     * @param p Position de l'eau.
      * @param effet Valeur de l'effet (positif pour bonus, négatif pour malus).
      * @param duree Nombre de tours pour lesquels l'effet est actif.
      * @param caract La caractéristique modifiée (ex: degAtt, ptPar).
      */
-    public Epinard(Point2D p, int effet, int duree, String caract) {
-        super(p, effet, duree, caract);  
+   public Eau(Point2D p, int effet, int duree, String caract) {
+        super("Eau", p, effet, duree, caract); 
     }
-    
+
     /**
      * Constructeur par copie.
-     * @param e Epinard à copier.
+     *
+     * @param e Eau à copier.
      */
-    public Epinard(Epinard e) {
-        super(e);
+    public Eau(Eau e) {
+        super(e); 
     }
-    
     /**
      * Constructeur par défaut.
      */
-    public Epinard() {
-        super();
+    public Eau() {
+        super("Eau");  
     }
+    
 }
+

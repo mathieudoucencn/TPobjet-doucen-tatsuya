@@ -9,10 +9,11 @@ package md.tp.poo;
  * @author woota
  */
 public interface Utilisable {
-    
+
     /**
      *
-     * @param p */
+     * @param p
+     */
     public void utiliser(Personnage p);
     
 }

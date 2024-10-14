@@ -8,10 +8,12 @@ package md.tp.poo;
  *
  * @author woota
  */
-public class Loup extends Monstre implements Combattant{
-    
+public class Loup extends Monstre implements Combattant {
+
+
     /**
      * Constructeur avec paramètres
+     *
      * @param n Nom de la créature
      * @param pv Points de vie
      * @param dA Dégâts d'attaque
@@ -20,26 +22,32 @@ public class Loup extends Monstre implements Combattant{
      * @param paPar Pourcentage de parade
      * @param p Position
      */
-    
-    public Loup(String n,int pv, int dA, int pPar, int paAtt, int paPar,Point2D p){
-        super(n, pv, dA, pPar, paAtt, paPar, p);
+
+    public Loup(int pv, int dA, int pPar, int paAtt, int paPar, Point2D p) {
+        super("Loup", pv, dA, pPar, paAtt, paPar, p);
     }
-    
-     /**
+
+    /**
      * Constructeur par copie
+     *
      * @param l Lapin a copier
-     **/
-  
-    public Loup(Loup l){
+     *
+     */
+    public Loup(Loup l) {
         super(l);
+
     }
-    
+
     /**
      * Constructeur par defaut
-     * 
-     **/
-    public Loup(){
-        super();
+     *
+     *
+     */
+    public Loup() {
+        super("Loup");
+
     }
+
+    
 
 }

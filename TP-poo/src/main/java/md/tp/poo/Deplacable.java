@@ -14,5 +14,5 @@ package md.tp.poo;
  */
 public interface Deplacable {
     
-    void deplace();
+    void deplace(World world);
 }
