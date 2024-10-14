@@ -141,6 +141,8 @@ public class World {
             return;
         }
 
+        Jouer jouer = new Jouer(nom);
+        
         switch (choix) {
             case 1:
                 jouer.setPersonnage(new Archer(nom, 65, 12, 8, 85, 50, 5, newPos, 10));
