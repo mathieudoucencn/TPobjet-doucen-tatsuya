@@ -76,6 +76,7 @@ public class NuageToxique extends Objet implements Deplacable, Combattant {
         } while (world.outside(newPos));
 
         this.setPosition(newPos);
+
     }
 
     @Override

@@ -12,10 +12,6 @@ import java.io.InputStreamReader;
  *
  * @author woota
  */
-/**
- * Classe qui gère un joueur humain dans le jeu. Le joueur peut choisir son
- * personnage, se déplacer, combattre et utiliser des objets.
- */
 public class Jouer {
 
     private Personnage personnage;
@@ -103,11 +99,9 @@ public class Jouer {
         }
     }
 
-    // Method to choose a target and engage in combat
     public void choisirCibleEtCombattre(World world) {
 
         Creature cible = null;
-
         for (Creature c : world.getCreatures()) {
             if (c != personnage) {
                 double distance = personnage.getPosition().distance(c.getPosition());
@@ -116,9 +110,7 @@ public class Jouer {
                 }
             }
         }
-
         if (cible != null) {
-
             String n = null;
             if (cible instanceof Personnage) {
                 Personnage p = (Personnage) cible;
@@ -129,15 +121,16 @@ public class Jouer {
             }
             personnage.combattre(cible);
             if (cible.getPtVie() <= 0) {
-                System.out.println(n + " a ete vaincu !");
+                System.out.println(n + "a ete vaincu");
                 cible.removeCreature(world);
+            } else {
+                System.out.println("Aucune cible");
             }
-        } else {
-            System.out.println("Aucune cible a portee.");
+
         }
+
     }
 
-    // Method to use an item from the player's inventory
     public void utiliserObjet() {
         if (inventaire.getItems().isEmpty()) {
             System.out.println("Votre inventaire est vide.");
@@ -170,4 +163,5 @@ public class Jouer {
         personnage.ajouterEffetActif(u);
         personnage.mettreAJourEffets();
     }
+
 }
