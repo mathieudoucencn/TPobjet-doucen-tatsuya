@@ -49,6 +49,7 @@ public class NuageToxique extends Objet implements Deplacable, Combattant {
             newPos = new Point2D(newX, newY);
         } while (world.outside(newPos));
        
+        this.setPos(newPos);
     }
 
     @Override

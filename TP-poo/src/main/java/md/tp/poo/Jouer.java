@@ -217,15 +217,14 @@ public class Jouer {
    public void choisirCibleEtCombattre() {
         // Implémentation pour choisir une cible à attaquer
         Creature cible = null;
-        double distanceMin = Double.MAX_VALUE;
-
+        
         World world = World.getInstance();
         for (Creature c : world.getCreatures()) {
             if (c != personnage) {
                 double distance = personnage.getPos().distance(c.getPos());
-                if (distance <= personnage.getDistAttMax() && distance < distanceMin) {
+                if (distance <= personnage.getDistAttMax()) {
+                    System.out.println("aaa");
                     cible = c;
-                    distanceMin = distance;
                 }
             }
         }

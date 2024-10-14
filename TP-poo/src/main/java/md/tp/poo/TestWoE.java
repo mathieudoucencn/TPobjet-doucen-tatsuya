@@ -14,6 +14,7 @@ public class TestWoE {
         World world = World.getInstance();
         Jouer jouer = new Jouer();
         Personnage perso = jouer.choix(world);
+        System.out.println(jouer.getPersonnage().getDistAttMax());
         world.getCreatures().add(perso);
         world.setJouer(jouer);
         world.creerMondeAlea();
@@ -22,7 +23,8 @@ public class TestWoE {
         while (!gameOver) {
             world.afficheMonde();
             jouer.tour(world);
-            world.deplace();            
+            world.deplace();
+            System.out.println(jouer.getPersonnage().getDistAttMax());
             if (perso.getPtVie() <= 0) {
                 System.out.println("game over");
                 gameOver = true;
