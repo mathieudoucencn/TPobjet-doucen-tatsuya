@@ -37,4 +37,7 @@ public class Poisson extends Nourriture {
         super("Poisson");  
     }
     
+    public String getTexteSauvegarde() {
+        return this.typeNom + " " + position.getX() + " " + position.getY() + " " + this.getEffet() + " " + this.getDuree() + " " + this.getCaract();
+    }
 }

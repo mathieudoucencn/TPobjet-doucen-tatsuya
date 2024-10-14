@@ -66,10 +66,6 @@ public abstract class Objet extends ElementDeJeu{
     public void removeObjet(World world) {
         world.getObjets().remove(this);
     }
-    
-    public String getTexteSauvegarde() {
-        return "Objet " + this.typeNom+ " " + position.getX() + " " + position.getY();
-    }
 
     
     /**
@@ -78,5 +74,7 @@ public abstract class Objet extends ElementDeJeu{
      */
     public abstract void utiliser(Personnage p);
     
-   
+   public String getTexteSauvegarde() {
+        return this.typeNom + " " + position.getX() + " " + position.getY();
+    }
 }

@@ -37,4 +37,7 @@ public class Miel extends Nourriture{
         super("Miel");  
     }
     
+    public String getTexteSauvegarde() {
+        return this.typeNom + " " + position.getX() + " " + position.getY() + " " + this.getEffet() + " " + this.getDuree() + " " + this.getCaract();
+    }
 }

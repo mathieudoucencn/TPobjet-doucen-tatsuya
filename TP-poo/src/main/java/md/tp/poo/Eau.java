@@ -40,5 +40,8 @@ public class Eau extends Nourriture {
         super("Eau");  
     }
     
+    public String getTexteSauvegarde() {
+        return this.typeNom + " " + position.getX() + " " + position.getY() + " " + this.getEffet() + " " + this.getDuree() + " " + this.getCaract();
+    }
 }
 

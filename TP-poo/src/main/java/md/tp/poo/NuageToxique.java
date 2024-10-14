@@ -101,5 +101,8 @@ public class NuageToxique extends Objet implements Deplacable, Combattant {
         this.degAtt = degAtt;
     }
 
+    public String getTexteSauvegarde() {
+        return this.typeNom + " " + position.getX() + " " + position.getY() + " " + this.pageAtt + " " + this.degAtt;
+    }
     
 }

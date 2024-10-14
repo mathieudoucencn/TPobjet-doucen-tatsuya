@@ -268,11 +268,11 @@ public class World {
                 } else if (c instanceof Guerrier) {
                     carte[x][y] = "G";
                 }
-            } else {
-                System.out.println("your position: " + jouer.getPersonnage().getPosition().getY() + "," + jouer.getPersonnage().getPosition().getX());
-                carte[jouer.getPersonnage().getPosition().getX()][jouer.getPersonnage().getPosition().getY()] = "J";
             }
         }
+        
+        System.out.println("your position: " + jouer.getPersonnage().getPosition().getY() + "," + jouer.getPersonnage().getPosition().getX());
+        carte[jouer.getPersonnage().getPosition().getX()][jouer.getPersonnage().getPosition().getY()] = "J";
 
         for (Objet o : objets) {
             int x = o.getPosition().getX();
@@ -306,6 +306,7 @@ public class World {
         System.out.println("1 - Se deplacer");
         System.out.println("2 - Combattre");
         System.out.println("3 - Utiliser un objet");
+        System.out.println("4 - Quitter et sauvegarder");
 
         int choix;
         try {
@@ -325,6 +326,18 @@ public class World {
             case 3:
                 jouer.utiliserObjet();
                 break;
+            case 4:
+                String input = null;
+                System.out.println("sous quel nom?");
+                try {
+                    input = (br.readLine());
+                } catch (IOException e) {
+                    System.out.println("Entree invalide.");
+                    return;
+                }
+                this.sauvegarderPartie(input);
+                this.getJouer().getPersonnage().setPtVie(-1);
+                return;
             default:
                 System.out.println("Choix invalide.");
                 break;
@@ -368,7 +381,7 @@ public class World {
             }
 
             if (jouer != null && jouer.getPersonnage() != null) {
-                writer.write(jouer.getPersonnage().getNom() + " " + jouer.getPersonnage().getTexteSauvegarde() + "\n");
+                writer.write("Jouer" + " " + jouer.getPersonnage().getNom() + " " + jouer.getPersonnage().getTexteSauvegarde() + "\n");
 
                 for (Utilisable o : jouer.getInventaire().getItems()) {
                     Objet ob = (Objet) o;
@@ -406,6 +419,7 @@ public class World {
                         case "Archer":
                             Personnage perso = creerPersonnage(type, token);
                             creatures.add(perso);
+                            break;
                         case "Loup":
                         case "Lapin":
                             Monstre monstre = creerMonstre(type, token);
@@ -414,14 +428,16 @@ public class World {
                         case "NuageToxique":
                         case "PotionSoin":
                         case "Epee":
+                        case "Eau":
                         case "Poisson":
                         case "Miel":
                             Objet objet = creerObjet(type, token);
                             objets.add(objet);
                             break;
-                        case "Joueur":
+                        case "Jouer":
                             String nom = token.nextToken();
                             Jouer jouer = new Jouer(nom);
+                            this.setJouer(jouer);
                             jouer.setPersonnage(creerJoueur(token));
                             break;
                         case "Inventaire":
@@ -487,27 +503,30 @@ public class World {
     }
 
     private Objet creerObjet(String type, StringTokenizer tokenizer) {
-        int val1 = Integer.parseInt(tokenizer.nextToken());
         int posX = Integer.parseInt(tokenizer.nextToken());
         int posY = Integer.parseInt(tokenizer.nextToken());
-
+        int val1; int val2;
         Point2D position = new Point2D(posX, posY);
 
         switch (type) {
             case "NuageToxique":
-                int val2 = Integer.parseInt(tokenizer.nextToken());
+                val1 = Integer.parseInt(tokenizer.nextToken());
+                val2 = Integer.parseInt(tokenizer.nextToken());
                 return new NuageToxique(position, val1, val2);
             case "PotionSoin":
+                val1 = Integer.parseInt(tokenizer.nextToken());
                 return new PotionSoin(position, val1);
             case "Epee":
+                val1 = Integer.parseInt(tokenizer.nextToken());
                 return new Epee(position, val1, 2);
             case "Poisson":
+                val1 = Integer.parseInt(tokenizer.nextToken());
                 return new Poisson(position, val1, 2, "ptVie");
-
             case "Miel":
+                val1 = Integer.parseInt(tokenizer.nextToken());
                 return new Miel(position, val1, 2, "ptVie");
-
             case "Eau":
+                val1 = Integer.parseInt(tokenizer.nextToken());
                 return new Eau(position, val1, 2, "ptVie");
             default:
                 return null;

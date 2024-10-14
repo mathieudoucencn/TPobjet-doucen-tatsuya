@@ -100,5 +100,11 @@ public class Archer extends Personnage implements Combattant {
         }
 
     }
+    
+    @Override
+    public String getTexteSauvegarde() {
+        return  this.typeNom + " " + this.nom + " " + this.ptVie + " " + this.degAtt + " " + this.ptPar + " " + this.pageAtt
+                + " " + this.pagePar + " " + this.distAttMax + " " + this.position.getX() + " " + this.position.getY() + " " + this.getNbFleches();
+    }
 
 }
