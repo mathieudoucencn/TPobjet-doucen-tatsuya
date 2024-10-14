@@ -1,186 +1,80 @@
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  */
-
 package md.tp.poo;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 
 /**
  *
  * @author mathi
  */
 public class TestWoE {
-    
+
     public static void main(String[] args) {
         World world = new World();
-        world.creationJouer("you");
-        world.getCreatures().add(world.getJouer().getPersonnage());
-        world.creerMondeAlea();
-        
+
+        System.out.println("Do you want to load a world? (Yes:1,No:2)");
+
+        InputStreamReader isr = new InputStreamReader(System.in);
+        BufferedReader br = new BufferedReader(isr);
+        int choix = 0;
+        try {
+            choix = Integer.parseInt(br.readLine());
+        } catch (IOException | NumberFormatException e) {
+            System.out.println("Entree invalide.");
+            return;
+        }
+        if (choix == 1) {
+            System.out.println("Enter the file name you want to load.");
+            String nomFichier = null;
+            try {
+                nomFichier = br.readLine();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+            world.chargementPartie(nomFichier);
+        } else {
+            world.creationJouer("you");
+            world.creerMondeAlea();
+        }
+
         boolean gameOver = false;
         while (!gameOver) {
             world.afficheMonde();
             world.tourDeJeu();
-            world.afficheMonde();
-            world.deplace();            
+            world.deplace();
             if (world.getJouer().getPersonnage().getPtVie() <= 0) {
                 System.out.println("game over");
                 gameOver = true;
             }
-        }
-
-        /*
-        Connection conn = DatabaseTools.connect();
-        if (conn != null) {
-            System.out.println("connection succes");
+            System.out.println("Do you want to quit game? (Yes:1, No:2)");
+            int quit = 0;
             try {
-                conn.close();
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
-        } else {
-            System.out.println("connection fail.");
-        }
-
-        Scanner scanner = new Scanner(System.in);
-
-        System.out.print("Enter your login:");
-        String login = scanner.nextLine();
-        System.out.print("Enter your password: ");
-        String password = scanner.nextLine();
-
-        boolean isAuthenticated = DatabaseTools.authenticatePlayer(login, password);
-        String codename = login;
-
-        World world = World.getInstance();
-        boolean loaded = false;
-
-        if (!isAuthenticated) {
-            System.out.println("Not enregisterd, creating...");
-
-            System.out.print("Enter your codename of your character: ");
-            codename = scanner.nextLine();
-
-            DatabaseTools.registerPlayer(codename, password);
-            
-
-        
-            System.out.println("Creating a new game...");
-
-            System.out.print("Enter the name of the world: ");
-            String nomPartie = scanner.nextLine();
-            world.setNom(nomPartie);
-            System.out.print("Enter the name of the savedata: ");
-            String nomSauvegarde = scanner.nextLine();
-
-            world.creerMondeAlea();
-
-            Jouer jouer = new Jouer();
-            Personnage perso = jouer.choix(world);
-            if (perso == null) {
-                System.out.println("failed making a characater");
+                quit = Integer.parseInt(br.readLine());
+            } catch (IOException | NumberFormatException e) {
+                System.out.println("Entree invalide.");
                 return;
             }
-            jouer.setNom(codename); 
-            world.setJouer(jouer);
-            world.getCreatures().add(perso);
-
-            startGame(scanner, world, jouer, perso, codename, nomPartie, nomSauvegarde);
-
-        } else {
-            System.out.println("login succes");
-            System.out.println("codename: " + codename);
-
-            DatabaseTools.listSavedGames(codename);
-
-            System.out.println("Load saved data? (yes/no) ");
-            String loadChoice = scanner.nextLine();
-/*
-            if (loadChoice.equalsIgnoreCase("yes")) {
-                System.out.print("Enter the name of the savedata: ");
-                String nomSauvegarde = scanner.nextLine();
-
-                DatabaseTools.readWorld(codename, nomSauvegarde, world);
-                if (world.isLoaded()) {
-                    System.out.println("savedata loaded.");
-                    loaded = true;
-
-                    Jouer jouer = world.getJouer();
-                    Personnage perso = jouer.getPersonnage();
-
-                    startGame(scanner, world, jouer, perso, codename, "", nomSauvegarde);
-
-                } else {
-                    System.out.println("there is no such savedata. Starting a new game.");
-                    loaded = false;
-                }
+            if (quit == 1) {
+                break;
             }
 
-            if (!loaded) {
-                System.out.println("Starting new game.");
-
-                System.out.print("Enter the name of the world. ");
-                String nomPartie = scanner.nextLine();
-                System.out.print("Enter the name of the savedata. ");
-                String nomSauvegarde = scanner.nextLine();
-
-                world.creerMondeAlea();
-
-                Jouer jouer = new Jouer();
-                Personnage perso = jouer.choix(world);
-                if (perso == null) {
-                    System.out.println("error making a character.");
-                    return;
-                }
-                world.setJouer(jouer);
-                world.getCreatures().add(perso);
-
-                startGame(scanner, world, jouer, perso, codename, nomPartie, nomSauvegarde);
-            }
+        }
+        System.out.println("Do you want to save game? (Yes:1, No:2)");
+        int save = 0;
+        try {
+            save = Integer.parseInt(br.readLine());
+        } catch (IOException | NumberFormatException e) {
+            System.out.println("Entree invalide.");
+            return;
+        }
+        if (save == 1) {
+            world.sauvegarderPartie("test");
         }
 
-        scanner.close();
-            */
     }
-            
-/*
-    private static void startGame(Scanner scanner, World world, Jouer jouer, Personnage perso, String codename, String nomPartie, String nomSauvegarde) {
-        boolean gameOver = false;
-        while (!gameOver) {
-            world.afficheMonde();
-            jouer.tour(world);
-
-            if (perso.getPtVie() <= 0) {
-                System.out.println("game over");
-                gameOver = true;
-                continue;
-            }
-
-            world.deplace();
-        }
-
-            /*
-            System.out.print("Save world? (yes/no): ");
-            String saveChoice = scanner.nextLine();
-            if (saveChoice.equalsIgnoreCase("yes")) {
-                DatabaseTools.saveWorld(codename, nomPartie, nomSauvegarde, world);
-                System.out.println("World saved.");
-            }
-
-            System.out.print("continue playing? (yes/no): ");
-            String continueChoice = scanner.nextLine();
-            if (continueChoice.equalsIgnoreCase("no")) {
-                gameOver = true;
-            }
-        }
-
-        System.out.print("Do you want to delete world (yes/no): ");
-        String userInput = scanner.nextLine();
-        if (userInput.equalsIgnoreCase("yes")) {
-            DatabaseTools.removeWorld(codename, nomSauvegarde);
-            System.out.println("world deleted");
-        } else {
-            System.out.println("world saved");
-        }
-    }
-*/
 }

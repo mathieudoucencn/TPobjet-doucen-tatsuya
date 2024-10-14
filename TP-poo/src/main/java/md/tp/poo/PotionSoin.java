@@ -54,5 +54,9 @@ public class PotionSoin extends Objet implements Utilisable {
     public String toString() {
         return "Potion de soin [valeur de soin=" + valSoin + "]";
     }
+    
+    public String getTexteSauvegarde() {
+        return  this.typeNom+ " " + position.getX() + " " + position.getY() +" "+this.valSoin;
+    }
 
 }

@@ -64,5 +64,9 @@ public class Epee extends Objet implements Utilisable {
     public void setValDam(int valDam) {
         this.valDam = valDam;
     }
+    
+    public String getTexteSauvegarde() {
+        return  this.typeNom+ " " + position.getX() + " " + position.getY() +" "+this.valDam;
+    }
 
 }

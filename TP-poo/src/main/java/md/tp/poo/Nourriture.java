@@ -91,6 +91,10 @@ public class Nourriture extends Objet implements Utilisable {
     public String toString() {
         return "Nourriture [effet=" + effet + ", duree=" + duree + ", caract=" + caract + "]";
     }
+    
+    public String getTexteSauvegarde() {
+        return  this.typeNom+ " " + position.getX() + " " + position.getY() +" "+this.duree;
+    }
 
 }
 

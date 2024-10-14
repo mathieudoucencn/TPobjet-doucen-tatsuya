@@ -141,6 +141,8 @@ public class World {
             return;
         }
 
+        Jouer jouer = new Jouer(nom);
+
         switch (choix) {
             case 1:
                 jouer.setPersonnage(new Archer(nom, 65, 12, 8, 85, 50, 5, newPos, 10));
@@ -266,11 +268,12 @@ public class World {
                 } else if (c instanceof Guerrier) {
                     carte[x][y] = "G";
                 }
-            } else {
-                System.out.println("your position: " + jouer.getPersonnage().getPosition().getY() + "," + jouer.getPersonnage().getPosition().getX());
-                carte[jouer.getPersonnage().getPosition().getX()][jouer.getPersonnage().getPosition().getY()] = "J";
             }
+
         }
+
+        System.out.println("your position: " + jouer.getPersonnage().getPosition().getY() + "," + jouer.getPersonnage().getPosition().getX());
+        carte[jouer.getPersonnage().getPosition().getX()][jouer.getPersonnage().getPosition().getY()] = "J";
 
         for (Objet o : objets) {
             int x = o.getPosition().getX();
@@ -362,15 +365,45 @@ public class World {
 
             }
             for (Objet objet : objets) {
-                writer.write(objet.getTexteSauvegarde() + "\n");
+                if (objet instanceof NuageToxique) {
+                    NuageToxique n = (NuageToxique) objet;
+                    writer.write(n.getTexteSauvegarde() + "\n");
+                } else if (objet instanceof Epee) {
+                    Epee e = (Epee) objet;
+                    writer.write(e.getTexteSauvegarde() + "\n");
+                } else if (objet instanceof Epee) {
+                    Epee e = (Epee) objet;
+                    writer.write(e.getTexteSauvegarde() + "\n");
+                } else if (objet instanceof PotionSoin) {
+                    PotionSoin p = (PotionSoin) objet;
+                    writer.write(p.getTexteSauvegarde() + "\n");
+                } else if (objet instanceof Eau) {
+                    Eau e = (Eau) objet;
+                    writer.write(e.getTexteSauvegarde() + "\n");
+                }
+
             }
 
             if (jouer != null && jouer.getPersonnage() != null) {
-                writer.write(jouer.getPersonnage().getNom() + " " + jouer.getPersonnage().getTexteSauvegarde() + "\n");
+                writer.write("Joueur" + "" + jouer.getPersonnage().getTexteSauvegarde() + "\n");
 
                 for (Utilisable o : jouer.getInventaire().getItems()) {
-                    Objet ob = (Objet) o;
-                    writer.write(ob.getTexteSauvegarde() + "\n");
+                    if (o instanceof NuageToxique) {
+                        NuageToxique n = (NuageToxique) o;
+                        writer.write(n.getTexteSauvegarde() + "\n");
+                    } else if (o instanceof Epee) {
+                        Epee e = (Epee) o;
+                        writer.write(e.getTexteSauvegarde() + "\n");
+                    } else if (o instanceof Epee) {
+                        Epee e = (Epee) o;
+                        writer.write(e.getTexteSauvegarde() + "\n");
+                    } else if (o instanceof PotionSoin) {
+                        PotionSoin p = (PotionSoin) o;
+                        writer.write(p.getTexteSauvegarde() + "\n");
+                    } else if (o instanceof Eau) {
+                        Eau e = (Eau) o;
+                        writer.write(e.getTexteSauvegarde() + "\n");
+                    }
                 }
             }
             System.out.println("Partie sauvegardee dans " + nomFichier);
@@ -392,6 +425,7 @@ public class World {
                 StringTokenizer token = new StringTokenizer(line);
                 if (token.hasMoreTokens()) {
                     String type = token.nextToken();
+
                     switch (type) {
                         case "Largeur":
                             this.largeur = Integer.parseInt(token.nextToken());
@@ -404,6 +438,7 @@ public class World {
                         case "Archer":
                             Personnage perso = creerPersonnage(type, token);
                             creatures.add(perso);
+                            break;
                         case "Loup":
                         case "Lapin":
                             Monstre monstre = creerMonstre(type, token);
@@ -413,6 +448,7 @@ public class World {
                         case "PotionSoin":
                         case "Epee":
                         case "Poisson":
+                        case "Eau":
                         case "Miel":
                             Objet objet = creerObjet(type, token);
                             objets.add(objet);
@@ -420,6 +456,7 @@ public class World {
                         case "Joueur":
                             String nom = token.nextToken();
                             Jouer jouer = new Jouer(nom);
+                            this.setJouer(jouer);
                             jouer.setPersonnage(creerJoueur(token));
                             break;
                         case "Inventaire":

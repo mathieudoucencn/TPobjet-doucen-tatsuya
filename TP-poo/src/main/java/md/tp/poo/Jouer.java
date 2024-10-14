@@ -123,12 +123,10 @@ public class Jouer {
             if (cible.getPtVie() <= 0) {
                 System.out.println(n + "a ete vaincu");
                 cible.removeCreature(world);
-            } else {
-                System.out.println("Aucune cible");
             }
-
+        } else {
+            System.out.println("Aucune cible");
         }
-
     }
 
     public void utiliserObjet() {

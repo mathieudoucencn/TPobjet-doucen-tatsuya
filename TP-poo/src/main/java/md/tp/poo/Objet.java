@@ -67,10 +67,6 @@ public abstract class Objet extends ElementDeJeu{
         world.getObjets().remove(this);
     }
     
-    public String getTexteSauvegarde() {
-        return "Objet " + this.typeNom+ " " + position.getX() + " " + position.getY();
-    }
-
     
     /**
      * Applique l'effet de l'objet sur un personnage
