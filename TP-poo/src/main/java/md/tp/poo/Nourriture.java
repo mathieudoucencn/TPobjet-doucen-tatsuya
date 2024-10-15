@@ -1,18 +1,17 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package md.tp.poo;
 
 /**
- * Classe qui représente un objet Nourriture qui peut donner des bonus ou malus.
+ * Classe qui représente un objet de type Nourriture qui peut donner des bonus ou malus.
+ * @author mathi
  */
 public class Nourriture extends Objet implements Utilisable {
-
+    
+    //attributs
     private int effet;    // Bonus/Malus à appliquer
     private int duree;    // Durée de l'effet
     private String caract;  // Caractéristique affectée (ex: "degAtt", "ptPar")
-
+    
+    //méthodes
     /**
      * Constructeur avec paramètres.
      *
@@ -35,7 +34,7 @@ public class Nourriture extends Objet implements Utilisable {
      * @param n Nourriture à copier.
      */
     public Nourriture(Nourriture n) {
-        super(n);  // コピーコンストラクタ
+        super(n);  // コピーコンストラクタ   ??????????????????????????????????????
         this.effet = n.effet;
         this.duree = n.duree;
         this.caract = n.caract;
@@ -50,27 +49,50 @@ public class Nourriture extends Objet implements Utilisable {
         super(n);
     }
 
-    // Getters and Setters
+    /**
+     * 
+     * @return 
+     */
     public int getEffet() {
         return effet;
     }
-
+    
+    /**
+     * 
+     * @param effet 
+     */
     public void setEffet(int effet) {
         this.effet = effet;
     }
-
+    
+    /**
+     * 
+     * @return 
+     */
     public int getDuree() {
         return duree;
     }
-
+    
+    /**
+     * 
+     * @param duree 
+     */
     public void setDuree(int duree) {
         this.duree = duree;
     }
-
+    
+    /**
+     * 
+     * @return 
+     */
     public String getCaract() {
         return caract;
     }
-
+    
+    /**
+     * 
+     * @param caract 
+     */
     public void setCaract(String caract) {
         this.caract = caract;
     }
@@ -86,12 +108,21 @@ public class Nourriture extends Objet implements Utilisable {
         System.out.println(p.getNom() + " utilise la nourriture et gagne un effet sur " + this.caract
                 + " de " + this.effet + " pour " + this.duree + " tours.");
     }
-
+    
+    /**
+     * 
+     * @return 
+     */
     @Override
     public String toString() {
         return "Nourriture [effet=" + effet + ", duree=" + duree + ", caract=" + caract + "]";
     }
     
+    /**
+     * fonction de retour d'une chaine de caractères décrivant le type et les attributs.
+     * @return 
+     */
+    @Override
     public String getTexteSauvegarde() {
         return this.typeNom + " " + position.getX() + " " + position.getY() + " " + this.effet + " " + this.duree + " " + this.caract;
     }

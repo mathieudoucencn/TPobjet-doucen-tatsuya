@@ -1,16 +1,15 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package md.tp.poo;
 
 /**
- *
- * @author woota
+ * Classe qui représente un monstre plus coriace
+ * @author woota & mathi
  */
+
 public class Loup extends Monstre implements Combattant {
-
-
+    
+    //attributs
+    
+    //méthodes
     /**
      * Constructeur avec paramètres
      *
@@ -22,7 +21,6 @@ public class Loup extends Monstre implements Combattant {
      * @param paPar Pourcentage de parade
      * @param p Position
      */
-
     public Loup(int pv, int dA, int pPar, int paAtt, int paPar, Point2D p) {
         super("Loup", pv, dA, pPar, paAtt, paPar, p);
     }
@@ -31,23 +29,16 @@ public class Loup extends Monstre implements Combattant {
      * Constructeur par copie
      *
      * @param l Lapin a copier
-     *
      */
     public Loup(Loup l) {
         super(l);
-
     }
 
     /**
      * Constructeur par defaut
      *
-     *
      */
     public Loup() {
         super("Loup");
-
     }
-
-    
-
 }

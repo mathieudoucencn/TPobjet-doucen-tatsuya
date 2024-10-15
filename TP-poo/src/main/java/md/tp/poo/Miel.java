@@ -1,17 +1,17 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package md.tp.poo;
 
 /**
- *
- * @author woota
+ * Classe qui représente un consommable
+ * @author woota & mathi
  */
+
 public class Miel extends Nourriture{
     
+    //attributs
+    
+    //méthodes
     /**
-     * Constructeur avec position, effet, durée et caractéristique.
+     * Constructeur avec paramètres.
      *
      * @param p Position du miel.
      * @param effet Valeur de l'effet (positif pour bonus, négatif pour malus).
@@ -30,6 +30,7 @@ public class Miel extends Nourriture{
     public Miel(Miel m) {
         super(m); 
     }
+    
     /**
      * Constructeur par défaut.
      */
@@ -37,6 +38,11 @@ public class Miel extends Nourriture{
         super("Miel");  
     }
     
+    /**
+     * fonction de retour d'une chaine de caractères décrivant le type et les attributs.
+     * @return 
+     */
+    @Override
     public String getTexteSauvegarde() {
         return this.typeNom + " " + position.getX() + " " + position.getY() + " " + this.getEffet() + " " + this.getDuree() + " " + this.getCaract();
     }

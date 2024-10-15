@@ -2,7 +2,14 @@ package md.tp.poo;
 
 import java.util.Random;
 
+/**
+ * Classe qui représente un monstre basique
+ * @author mathi & woota
+ */
+
 public class Monstre extends Creature {
+    
+    //attributs
 
     //Méthodes
     /**
@@ -33,13 +40,16 @@ public class Monstre extends Creature {
     /**
      * Constructeur par defaut
      *
-     *
      * @param n
      */
     public Monstre(String n) {
         super(n);
     }
-
+    
+    /**
+     * fonction de déplacement d'un monstre
+     * @param world 
+     */
     @Override
     public void deplace(World world) {
 
@@ -63,7 +73,11 @@ public class Monstre extends Creature {
 
         this.getPosition().translate(dx, dy);
     }
-
+    
+    /**
+     * fonction de combat d'un monstre
+     * @param c 
+     */
     public void combattre(Creature c) {
 
         Random alea = new Random();
@@ -104,6 +118,10 @@ public class Monstre extends Creature {
 
     }
     
+    /**
+     * fonction de retour d'une chaine de caractères décrivant le type et les attributs.
+     * @return 
+     */
     public String getTexteSauvegarde() {
         return  this.typeNom + " " + this.ptVie + " " + this.degAtt + " " + this.ptPar + " " + this.pageAtt+
                " " + this.pagePar + " " + this.position.getX() + " " + this.position.getY();

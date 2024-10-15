@@ -1,39 +1,52 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package md.tp.poo;
 
 import java.util.Random;
 
 /**
- *
- * @author woota
- */
-/**
  * Classe qui représente un nuage toxique.
+ * @author woota & mathi
  */
-public class NuageToxique extends Objet implements Deplacable, Combattant {
 
+public class NuageToxique extends Objet implements Deplacable, Combattant {
+    
+    //attributs
     private int pageAtt;
     private int degAtt;
-
+    
+    //méthodes
+    /**
+     * Constructeur par paramètres
+     * @param p
+     * @param pageAtt
+     * @param degAtt 
+     */
     public NuageToxique(Point2D p, int pageAtt, int degAtt) {
         super(" NuageToxique", p);
         this.pageAtt = pageAtt;
         this.degAtt = degAtt;
     }
-
+    
+    /**
+     * Constructeur par copie
+     * @param n 
+     */
     public NuageToxique(NuageToxique n) {
         super(n);
         this.pageAtt = n.pageAtt;
         this.degAtt = n.degAtt;
     }
-
+    
+    /**
+     * Constructeur par défault
+     */
     public NuageToxique() {
         super();
     }
-
+    
+    /**
+     * fonction de "combat" d'un nuage toxique
+     * @param c 
+     */
     @Override
     public void combattre(Creature c) {
         Random alea = new Random();
@@ -58,7 +71,11 @@ public class NuageToxique extends Objet implements Deplacable, Combattant {
             System.out.println("nuage --->" + n + " : missed attack");
         }
     }
-
+    
+    /**
+     * fonction de déplacement d'un nuage toxique
+     * @param world 
+     */
     @Override
     public void deplace(World world
     ) {
@@ -78,29 +95,54 @@ public class NuageToxique extends Objet implements Deplacable, Combattant {
         this.setPosition(newPos);
 
     }
-
+    
+    /**
+     * fonction d'utilisation d'un nuage toxique
+     * @param p 
+     */
     @Override
     public void utiliser(Personnage p) {
 
         System.out.println("Nuage toxique affecte " + p.getNom());
     }
-
+    
+    /**
+     * 
+     * @return 
+     */
     public int getPageAtt() {
         return pageAtt;
     }
-
+    
+    /**
+     * 
+     * @param pageAtt 
+     */
     public void setPageAtt(int pageAtt) {
         this.pageAtt = pageAtt;
     }
-
+    
+    /**
+     * 
+     * @return 
+     */
     public int getDegAtt() {
         return degAtt;
     }
-
+    
+    /**
+     * 
+     * @param degAtt 
+     */
     public void setDegAtt(int degAtt) {
         this.degAtt = degAtt;
     }
- 
+    
+    /**
+     * fonction de retour d'une chaine de caractères décrivant le type et les attributs.
+     * @return 
+     */
+    @Override
     public String getTexteSauvegarde() {
         return this.typeNom + " " + position.getX() + " " + position.getY() + " " + this.pageAtt + " " + this.degAtt;
     }
