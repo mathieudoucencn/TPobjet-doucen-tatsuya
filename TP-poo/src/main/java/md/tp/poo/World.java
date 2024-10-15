@@ -14,10 +14,13 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
- * Classe qui représente le monde
+ * Classe qui représente un monde, dans lequel se déroule une partie
+ * @author mathi & woota
  */
-public class World {
 
+public class World {
+    
+    //attributs
     private String[][] carte;
     private Joueur joueur;
     private int largeur;
@@ -27,9 +30,10 @@ public class World {
     private final ArrayList<Creature> creatures;
     private final ArrayList<Objet> objets;
     private final ArrayList<Point2D> positions;
-
+    
+    //méthodes
     /**
-     * Constructeur privé pour le singleton
+     * Constructeur par défaut
      */
     public World() {
         this.hauteur = 20;
@@ -40,23 +44,44 @@ public class World {
         this.objets = new ArrayList<>();
         this.positions = new ArrayList<>();
     }
-
+    
+    /**
+     * 
+     * @return 
+     */
     public ArrayList<Creature> getCreatures() {
         return creatures;
     }
-
+    
+    /**
+     * 
+     * @return 
+     */
     public ArrayList<Objet> getObjets() {
         return objets;
     }
-
+    
+    /**
+     * 
+     * @return 
+     */
     public ArrayList<Point2D> getPositions() {
         return positions;
     }
-
+    
+    /**
+     * 
+     * @return 
+     */
     public String[][] getCarte() {
         return this.carte;
     }
-
+    
+    /**
+     * 
+     * @param p
+     * @return 
+     */
     public boolean creaEstOccupee(Point2D p) {
         for (Creature c : creatures) {
             if (c.getPosition().equals(p)) {
@@ -65,7 +90,10 @@ public class World {
         }
         return false;
     }
-
+    
+    /**
+     * 
+     */
     public void updatePos() {
         positions.clear();
 
@@ -81,7 +109,12 @@ public class World {
             positions.add(new Point2D(o.getPosition()));
         }
     }
-
+    
+    /**
+     * 
+     * @param p
+     * @return 
+     */
     public boolean posEstOccupee(Point2D p) {
         for (Point2D pos : positions) {
             if (pos.equals(p)) {
@@ -90,7 +123,12 @@ public class World {
         }
         return false;
     }
-
+    
+    /**
+     * 
+     * @param p
+     * @return 
+     */
     public boolean objEstOccupee(Point2D p) {
         for (Objet o : objets) {
             if (o.getPosition().equals(p)) {
@@ -99,7 +137,12 @@ public class World {
         }
         return false;
     }
-
+    
+    /**
+     * 
+     * @param p
+     * @return 
+     */
     public boolean outside(Point2D p) {
         return p.getX() >= hauteur || p.getY() >= largeur || p.getX() < 0 || p.getY() < 0;
     }
@@ -118,7 +161,11 @@ public class World {
         }
         return null;
     }
-
+    
+    /**
+     * 
+     * @param nom 
+     */
     public void creationJouer(String nom) {
 
         Random rand = new Random();
@@ -242,7 +289,10 @@ public class World {
             }
         }
     }
-
+    
+    /**
+     * fonction d'affichage du monde (a defaut d'avoir codé une interface graphique)
+     */
     public void afficheMonde() {
         carte = new String[hauteur][largeur];
 
@@ -298,7 +348,10 @@ public class World {
         }
         System.out.println();
     }
-
+    
+    /**
+     * fonction pour effectuer un tour de jeu. Une partie est une succession de tours.
+     */
     public void tourDeJeu() {
         InputStreamReader isr = new InputStreamReader(System.in);
         BufferedReader br = new BufferedReader(isr);
@@ -345,7 +398,10 @@ public class World {
         }
         joueur.getPersonnage().mettreAJourEffets();
     }
-
+    
+    /**
+     * 
+     */
     public void deplace() {
 
         for (Creature c1 : creatures) {
@@ -361,7 +417,11 @@ public class World {
         }
         updatePos();
     }
-
+    
+    /**
+     * fonction de sauvegarde d'une partie dans un fichier texte
+     * @param nomFichier 
+     */
     public void sauvegarderPartie(String nomFichier) {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(nomFichier))) {
             writer.write("Largeur " + this.largeur + "\n");
@@ -424,7 +484,11 @@ public class World {
             e.printStackTrace();
         }
     }
-
+    
+    /**
+     * fonction de chargement d'une sauvegarde à partir d'un fichier texte
+     * @param nomFichier 
+     */
     public void chargementPartie(String nomFichier) {
         FileReader file = null;
         try {
@@ -486,7 +550,13 @@ public class World {
             e.printStackTrace();
         }
     }
-
+    
+    /**
+     * fonction pour enregistrer un personnage dans un fichier texte
+     * @param type
+     * @param token
+     * @return 
+     */
     private Personnage creerPersonnage(String type, StringTokenizer token) {
         String nom = token.nextToken();
         int ptVie = Integer.parseInt(token.nextToken());
@@ -512,7 +582,13 @@ public class World {
                 return null;
         }
     }
-
+    
+    /**
+     * fonction pour enregistrer un monstre dans un fichier texte
+     * @param type
+     * @param token
+     * @return 
+     */
     private Monstre creerMonstre(String type, StringTokenizer token) {
         int ptVie = Integer.parseInt(token.nextToken());
         int degAtt = Integer.parseInt(token.nextToken());
@@ -533,7 +609,13 @@ public class World {
                 return null;
         }
     }
-
+    
+    /**
+     * fonction pour enregistrer un objet dans un fichier texte
+     * @param type
+     * @param token
+     * @return 
+     */
     private Objet creerObjet(String type, StringTokenizer tokenizer) {
         int posX = Integer.parseInt(tokenizer.nextToken());
         int posY = Integer.parseInt(tokenizer.nextToken());
@@ -564,7 +646,13 @@ public class World {
                 return null;
         }
     }
-
+    
+    /**
+     * fonction pour enregistrer le joueur dans un fichier texte
+     * @param type
+     * @param token
+     * @return 
+     */
     private Personnage creerJoueur(StringTokenizer token) {
         String typeNom = token.nextToken();
         String nom = token.nextToken();
@@ -589,27 +677,51 @@ public class World {
                 return null;
         }
     }
-
+    
+    /**
+     * 
+     * @return 
+     */
     public int getLargeur() {
         return largeur;
     }
-
+    
+    /**
+     * 
+     * @param largeur 
+     */
     public void setLargeur(int largeur) {
         this.largeur = largeur;
     }
-
+    
+    /**
+     * 
+     * @return 
+     */
     public int getHauteur() {
         return hauteur;
     }
-
+    
+    /**
+     * 
+     * @param hauteur 
+     */
     public void setHauteur(int hauteur) {
         this.hauteur = hauteur;
     }
-
+    
+    /**
+     * 
+     * @return 
+     */
     public Joueur getJouer() {
         return joueur;
     }
-
+    
+    /**
+     * 
+     * @param jouer 
+     */
     public void setJouer(Joueur jouer) {
         this.joueur = jouer;
     }
