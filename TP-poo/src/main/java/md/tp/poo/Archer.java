@@ -2,10 +2,17 @@ package md.tp.poo;
 
 import java.util.Random;
 
+/**
+ * Classe qui représente un archer.
+ * @author mathi & woota
+ */
+
 public class Archer extends Personnage implements Combattant {
 
+    //attributs
     private int nbFleches;
-
+    
+    //méthodes
     /**
      * Constructeur avec paramètres
      *
@@ -27,7 +34,6 @@ public class Archer extends Personnage implements Combattant {
 
     /**
      * Constructeur par copie
-     *
      * @param a Archer a copier
      *
      */
@@ -38,21 +44,32 @@ public class Archer extends Personnage implements Combattant {
 
     /**
      * Constructeur par defaut
-     *
-     *
+     * 
      */
     public Archer() {
         super("Archer");
     }
-
+    
+    /**
+     * 
+     * @return 
+     */
     public int getNbFleches() {
         return nbFleches;
     }
-
+    
+    /**
+     * 
+     * @param nbFleches 
+     */
     public void setNbFleches(int nbFleches) {
         this.nbFleches = nbFleches;
     }
-
+    
+    /**
+     * combat à distance!
+     * @param c 
+     */
     @Override
     public void combattre(Creature c) {
 
@@ -101,6 +118,10 @@ public class Archer extends Personnage implements Combattant {
 
     }
     
+    /**
+     * fonction de retour d'une chaine de caractères décrivant le type et les attributs.
+     * @return 
+     */
     @Override
     public String getTexteSauvegarde() {
         return  this.typeNom + " " + this.nom + " " + this.ptVie + " " + this.degAtt + " " + this.ptPar + " " + this.pageAtt

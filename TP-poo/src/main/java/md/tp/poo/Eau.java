@@ -1,18 +1,16 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package md.tp.poo;
 
 /**
- *
- * @author woota
- */
-/**
  * Classe Eau, un type spécifique de Nourriture qui donne un bonus sur degAtt.
+ * @author woota & mathi
  */
-public class Eau extends Nourriture {
 
+
+public class Eau extends Nourriture {
+    
+    //attributs
+    
+    //méthodes
     /**
      * Constructeur avec position, effet, durée et caractéristique.
      *
@@ -33,6 +31,7 @@ public class Eau extends Nourriture {
     public Eau(Eau e) {
         super(e); 
     }
+    
     /**
      * Constructeur par défaut.
      */
@@ -40,6 +39,10 @@ public class Eau extends Nourriture {
         super("Eau");  
     }
     
+    /**
+     * fonction de retour d'une chaine de caractères décrivant le type et les attributs.
+     * @return 
+     */
     public String getTexteSauvegarde() {
         return this.typeNom + " " + position.getX() + " " + position.getY() + " " + this.getEffet() + " " + this.getDuree() + " " + this.getCaract();
     }
