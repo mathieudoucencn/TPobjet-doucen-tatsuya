@@ -1,8 +1,10 @@
 package md.tp.poo;
 
 public class Lapin extends Monstre {
-
-
+    
+    //attributs
+    
+    //méthodes
     /**
      * Constructeur avec paramètres
      *
@@ -30,8 +32,7 @@ public class Lapin extends Monstre {
 
     /**
      * Constructeur par defaut
-     *
-     *
+     * 
      */
     public Lapin() {
         super("Lapin");

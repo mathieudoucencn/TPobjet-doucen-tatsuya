@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package md.tp.poo;
 
 import java.io.BufferedReader;
@@ -9,43 +5,71 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 
 /**
- *
+ * Classe qui représente le joueur
  * @author woota
  */
-public class Jouer {
-
+public class Joueur {
+    
+    //attributs
     private Personnage personnage;
     private Inventaire inventaire;
 
-    // Constructors
-    public Jouer(Personnage p) {
+    //méthodes
+    /**
+     * Constructeur par paramètres
+     * @param p 
+     */
+    public Joueur(Personnage p) {
         this.personnage = p;
         this.inventaire = new Inventaire();
-
     }
-
-    public Jouer(String nom) {
+    
+    /**
+     * Constructeur par défault
+     * @param nom 
+     */
+    public Joueur(String nom) {
         this.inventaire = new Inventaire();
         this.personnage = new Personnage();
 
     }
-
+    
+    /**
+     * 
+     * @return 
+     */
     public Personnage getPersonnage() {
         return personnage;
     }
-
+    
+    /**
+     * 
+     * @param personnage 
+     */
     public void setPersonnage(Personnage personnage) {
         this.personnage = personnage;
     }
-
+    
+    /**
+     * 
+     * @return 
+     */
     public Inventaire getInventaire() {
         return inventaire;
     }
-
+    
+    /**
+     * 
+     * @param inventaire 
+     */
     public void setInventaire(Inventaire inventaire) {
         this.inventaire = inventaire;
     }
-
+    
+    /**
+     * fonction de déplacement du joueur
+     * @param world 
+     */
     public void deplace(World world) {
         InputStreamReader isr = new InputStreamReader(System.in);
         BufferedReader br = new BufferedReader(isr);
@@ -98,7 +122,11 @@ public class Jouer {
             System.out.println("Vous ne pouvez pas vous deplacer ici.");
         }
     }
-
+    
+    /**
+     * fonction de combat du joueur
+     * @param world 
+     */
     public void choisirCibleEtCombattre(World world) {
 
         Creature cible = null;
@@ -128,7 +156,10 @@ public class Jouer {
             System.out.println("Aucune cible");
         }
     }
-
+    
+    /**
+     * Fonction d'utilisation d'objets
+     */
     public void utiliserObjet() {
         if (inventaire.getItems().isEmpty()) {
             System.out.println("Votre inventaire est vide.");

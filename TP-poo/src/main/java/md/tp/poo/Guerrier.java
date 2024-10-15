@@ -1,43 +1,68 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package md.tp.poo;
 
 import java.util.Random;
 
 /**
- * classe qui reprﾃｩsente un personnage capable de se battre au CaC
- *
+ * classe qui représente un personnage capable de se battre au CaC
  * @author mathi
  */
 public class Guerrier extends Personnage implements Combattant {
-
+    
+    //attributs
     private int bonusArme = 0;
-
+    
+    //méthodes
+    /**
+     * Constructeur par paramètres
+     * @param nom
+     * @param pv
+     * @param dA
+     * @param pPar
+     * @param paAtt
+     * @param paPar
+     * @param dMax
+     * @param p 
+     */
     public Guerrier(String nom, int pv, int dA, int pPar, int paAtt, int paPar, int dMax, Point2D p) {
         super("Guerrier" ,nom, pv, dA, pPar, paAtt, paPar, dMax, p);
     }
-
+    
+    /**
+     * Constructeur par copie
+     * @param g 
+     */
     public Guerrier(Guerrier g) {
         super(g);
         this.bonusArme = g.bonusArme;
     }
-
+    
+    /**
+     * Constructeur par default
+     */
     public Guerrier() {
         super("Guerrier");
     }
-
-
+    
+    /**
+     * 
+     * @return 
+     */
     public int getBonusArme() {
         return bonusArme;
     }
-
+    
+    /**
+     * 
+     * @param bonusArme 
+     */
     public void setBonusArme(int bonusArme) {
         this.bonusArme = bonusArme;
     }
 
-    //combat au corps a corps
+    /**
+     * combat au corps a corps
+     * @param c 
+     */
     @Override
     public void combattre(Creature c) {
 

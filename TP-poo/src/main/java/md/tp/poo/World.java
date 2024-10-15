@@ -19,7 +19,7 @@ import java.util.logging.Logger;
 public class World {
 
     private String[][] carte;
-    private Jouer jouer;
+    private Joueur joueur;
     private int largeur;
     private int hauteur;
     private final int nbProtagoniste;
@@ -69,11 +69,11 @@ public class World {
     public void updatePos() {
         positions.clear();
 
-        if (jouer != null && jouer.getPersonnage() != null) {
-            positions.add(new Point2D(jouer.getPersonnage().getPosition()));
+        if (joueur != null && joueur.getPersonnage() != null) {
+            positions.add(new Point2D(joueur.getPersonnage().getPosition()));
         }
         for (Creature c : creatures) {
-            if (jouer == null || c != jouer.getPersonnage()) {
+            if (joueur == null || c != joueur.getPersonnage()) {
                 positions.add(new Point2D(c.getPosition()));
             }
         }
@@ -141,7 +141,7 @@ public class World {
             return;
         }
 
-        Jouer jouer = new Jouer(nom);
+        Joueur jouer = new Joueur(nom);
         
         switch (choix) {
             case 1:
@@ -253,7 +253,7 @@ public class World {
         }
 
         for (Creature c : creatures) {
-            if (c != jouer.getPersonnage()) {
+            if (c != joueur.getPersonnage()) {
                 int x = c.getPosition().getX();
                 int y = c.getPosition().getY();
 
@@ -272,8 +272,8 @@ public class World {
 
         }
         
-        System.out.println("your position: " + jouer.getPersonnage().getPosition().getY() + "," + jouer.getPersonnage().getPosition().getX());
-        carte[jouer.getPersonnage().getPosition().getX()][jouer.getPersonnage().getPosition().getY()] = "J";
+        System.out.println("your position: " + joueur.getPersonnage().getPosition().getY() + "," + joueur.getPersonnage().getPosition().getX());
+        carte[joueur.getPersonnage().getPosition().getX()][joueur.getPersonnage().getPosition().getY()] = "J";
 
         for (Objet o : objets) {
             int x = o.getPosition().getX();
@@ -319,13 +319,13 @@ public class World {
 
         switch (choix) {
             case 1:
-                jouer.deplace(this);
+                joueur.deplace(this);
                 break;
             case 2:
-                jouer.choisirCibleEtCombattre(this);
+                joueur.choisirCibleEtCombattre(this);
                 break;
             case 3:
-                jouer.utiliserObjet();
+                joueur.utiliserObjet();
                 break;
             case 4:
                 String input = null;
@@ -343,13 +343,13 @@ public class World {
                 System.out.println("Choix invalide.");
                 break;
         }
-        jouer.getPersonnage().mettreAJourEffets();
+        joueur.getPersonnage().mettreAJourEffets();
     }
 
     public void deplace() {
 
         for (Creature c1 : creatures) {
-            if (jouer == null || c1 != jouer.getPersonnage()) {
+            if (joueur == null || c1 != joueur.getPersonnage()) {
                 c1.deplace(this);
             }
         }
@@ -397,10 +397,10 @@ public class World {
 
             }
 
-            if (jouer != null && jouer.getPersonnage() != null) {
-                writer.write("Jouer" + " " + jouer.getPersonnage().getNom() + " " + jouer.getPersonnage().getTexteSauvegarde() + "\n");
+            if (joueur != null && joueur.getPersonnage() != null) {
+                writer.write("Jouer" + " " + joueur.getPersonnage().getNom() + " " + joueur.getPersonnage().getTexteSauvegarde() + "\n");
 
-                for (Utilisable o : jouer.getInventaire().getItems()) {
+                for (Utilisable o : joueur.getInventaire().getItems()) {
                     if (o instanceof NuageToxique) {
                         NuageToxique n = (NuageToxique) o;
                         writer.write(n.getTexteSauvegarde() + "\n");
@@ -468,13 +468,13 @@ public class World {
                             break;
                         case "Jouer":
                             String nom = token.nextToken();
-                            Jouer jouer = new Jouer(nom);
+                            Joueur jouer = new Joueur(nom);
                             this.setJouer(jouer);
                             jouer.setPersonnage(creerJoueur(token));
                             break;
                         case "Inventaire":
                             Utilisable item = (Utilisable) creerObjet(token.nextToken(), token);
-                            this.jouer.getInventaire().getItems().add(item);
+                            this.joueur.getInventaire().getItems().add(item);
                             break;
                         default:
                             System.out.println("Type inconnu : " + type);
@@ -606,12 +606,12 @@ public class World {
         this.hauteur = hauteur;
     }
 
-    public Jouer getJouer() {
-        return jouer;
+    public Joueur getJouer() {
+        return joueur;
     }
 
-    public void setJouer(Jouer jouer) {
-        this.jouer = jouer;
+    public void setJouer(Joueur jouer) {
+        this.joueur = jouer;
     }
 
 }
