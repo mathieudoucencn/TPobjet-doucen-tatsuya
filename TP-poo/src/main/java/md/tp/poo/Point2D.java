@@ -1,30 +1,17 @@
-
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package md.tp.poo;
 /**
- *
- * @author woota
+ * Classe représentant un point sur une grille de position
+ * @author woota & mathi
  */
 
-/**
- * Classe représentant un point en 2D.
- */
 public class Point2D {
-
+    
+    //attributs
     private int X;
     private int Y;
-
-    /**
-     * Constructeur par défaut
-     */
-    public Point2D() {
-        this.X = 0;
-        this.Y = 0;
-    }
-
+    
+    //méthodes
+    
     /**
      * Constructeur avec coordonnées.
      * @param x Coordonnée X.
@@ -34,7 +21,7 @@ public class Point2D {
         this.X = x;
         this.Y = y;
     }
-
+    
     /**
      * Constructeur par copie.
      * @param point Point à copier.
@@ -43,19 +30,43 @@ public class Point2D {
         this.X = point.X;
         this.Y = point.Y;
     }
-
+    
+    /**
+     * Constructeur par défaut
+     */
+    public Point2D() {
+        this.X = 0;
+        this.Y = 0;
+    }
+    
+    /**
+     * 
+     * @return 
+     */
     public int getX() {
         return X;
     }
-
+    
+    /**
+     * 
+     * @param coordX 
+     */
     public void setX(int coordX) {
         this.X = coordX;
     }
-
+    
+    /**
+     * 
+     * @return 
+     */
     public int getY() {
         return Y;
     }
-
+    
+    /**
+     * 
+     * @param coordY 
+     */
     public void setY(int coordY) {
         this.Y = coordY;
     }

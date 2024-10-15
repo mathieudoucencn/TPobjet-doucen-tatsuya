@@ -5,16 +5,18 @@ import java.util.Random;
 
 /**
  * Classe qui decrit un personnage basique
- *
- * @author mathi
+ * @author mathi & woota
  */
-public class Personnage extends Creature implements Combattant {
 
+public class Personnage extends Creature implements Combattant {
+    
+    //attributs
     protected String nom;
     protected int distAttMax;
     protected ArrayList<Utilisable> effetsActifs;
     protected Inventaire inventaire;
-
+    
+    //méthodes
     /**
      * Constructeur avec paramètres
      *
@@ -38,7 +40,6 @@ public class Personnage extends Creature implements Combattant {
 
     /**
      * Constructeur par copie
-     *
      * @param p Personnage à copier
      *
      */
@@ -50,7 +51,7 @@ public class Personnage extends Creature implements Combattant {
     }
 
     /**
-     * Constructeur par défaut
+     * Constructeur par défaut avec nom
      * @param n
      */
     public Personnage(String n) {
@@ -59,40 +60,75 @@ public class Personnage extends Creature implements Combattant {
         this.inventaire = new Inventaire();
     }
     
+    /**
+     * Constructeur par défaut
+     */
     public Personnage() { 
         super();
         this.effetsActifs = new ArrayList<>();
         this.inventaire = new Inventaire();
+        this.nom = "default";
     }
-
+    
+    /**
+     * 
+     * @return 
+     */
     public String getNom() {
         return nom;
     }
-
+    
+    /**
+     * 
+     * @return 
+     */
     public int getDistAttMax() {
         return distAttMax;
     }
-
+    
+    /**
+     * 
+     * @param distAttMax 
+     */
     public void setDistAttMax(int distAttMax) {
         this.distAttMax = distAttMax;
     }
-
+    
+    /**
+     * 
+     * @return 
+     */
     public ArrayList<Utilisable> getEffetsActifs() {
         return effetsActifs;
     }
-
+    
+    /**
+     * 
+     * @param effetsActifs 
+     */
     public void setEffetsActifs(ArrayList<Utilisable> effetsActifs) {
         this.effetsActifs = effetsActifs;
     }
-
+    
+    /**
+     * 
+     * @return 
+     */
     public Inventaire getInventaire() {
         return inventaire;
     }
-
+    
+    /**
+     * 
+     * @param inventaire 
+     */
     public void setInventaire(Inventaire inventaire) {
         this.inventaire = inventaire;
     }
-
+    
+    /**
+     * 
+     */
     @Override
     public void affiche() {
         System.out.println(this.nom + ',' + this.ptVie + ',' + this.degAtt + ','
@@ -101,7 +137,7 @@ public class Personnage extends Creature implements Combattant {
     }
 
     /**
-     * Déplacement du personnage.
+     * fonction de déplacement du personnage.
      *
      * @param world
      */
@@ -138,7 +174,11 @@ public class Personnage extends Creature implements Combattant {
         this.mettreAJourEffets();
 
     }
-
+    
+    /**
+     * fonction d'ajout d'effet sur le personnage
+     * @param u 
+     */
     public void ajouterEffetActif(Utilisable u) {
         this.effetsActifs.add(u);
         if (u instanceof Nourriture) {
@@ -153,7 +193,10 @@ public class Personnage extends Creature implements Combattant {
             System.out.println(this.nom + " a utilise ");
         }
     }
-
+    
+    /**
+     * fonction de mise à jour des effets deja présents sur le personnage
+     */
     public void mettreAJourEffets() {
         ArrayList<Utilisable> effetsASupprimer = new ArrayList<>();
         for (Utilisable u : this.effetsActifs) {
@@ -178,7 +221,11 @@ public class Personnage extends Creature implements Combattant {
         }
         effetsActifs.removeAll(effetsASupprimer);
     }
-
+    
+    /**
+     * fonction permettant d'obtenir les degats d'attaque totaux
+     * @return 
+     */
     public int getEffectiveAtt() {
         int totalDegAtt = degAtt;
         for (Utilisable u : effetsActifs) {
@@ -233,6 +280,10 @@ public class Personnage extends Creature implements Combattant {
         }
     }
     
+    /**
+     * fonction de retour d'une chaine de caractères décrivant le type et les attributs.
+     * @return 
+     */
     public String getTexteSauvegarde() {
         return  this.typeNom + " " + this.nom + " " + this.ptVie + " " + this.degAtt + " " + this.ptPar + " " + this.pageAtt
                 + " " + this.pagePar + " " + this.distAttMax + " " + this.position.getX() + " " + this.position.getY();
