@@ -1,6 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- */
 package md.tp.poo;
 
 import java.io.BufferedReader;
@@ -8,17 +5,20 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 
 /**
- *
- * @author mathi
+ * Classe principale pour faire tourner le jeu
+ * @author mathi & woota
  */
 public class TestWoE {
 
     public static void main(String[] args) {
+        //création du monde
         World world = new World();
         
+        //chargement ou non
         System.out.println("Voulez vous charger un monde?");
         System.out.println("Oui: 1, Non: 2");
         
+        //récuperation du choix du joueur
         InputStreamReader isr = new InputStreamReader(System.in);
         BufferedReader br = new BufferedReader(isr);
         int choix = 0;
@@ -30,6 +30,7 @@ public class TestWoE {
         }
         
         switch (choix) {
+            //si oui: lequel? et on le charge
             case 1:
                 System.out.println("Lequel?");
                 String input = null;
@@ -40,6 +41,7 @@ public class TestWoE {
                 }
                 world.chargementPartie(input);
                 break;
+            //sinon, on en fait un nouveau. (ici aléatoire)
             case 2:
                 world.creationJouer("you");
                 world.creerMondeAlea();
@@ -48,6 +50,7 @@ public class TestWoE {
                 break;
         }
         
+        //boucle de fonctionnement du jeu
         boolean gameOver = false;
         while (!gameOver) {
             world.afficheMonde();

@@ -1,7 +1,7 @@
 package md.tp.poo;
 
 /**
- * Classe qui représente un objet basique
+ * Classe abstraite qui représente un objet basique
  * @author woota & mathi
  */
 

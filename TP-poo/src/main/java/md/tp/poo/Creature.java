@@ -1,7 +1,7 @@
 package md.tp.poo;
 
 /**
- * Classe qui représente une créature basique.
+ * Classe abstraite qui représente une créature basique.
  * @author woota & mathi
  */
 public abstract class Creature extends ElementDeJeu implements Deplacable {

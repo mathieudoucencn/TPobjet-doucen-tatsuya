@@ -1,7 +1,7 @@
 package md.tp.poo;
 
 /**
- * Super classe pour les éléments du jeu (creatures, objets).
+ * Classe abstraite pour les éléments du jeu (creatures, objets).
  * @author woota
  */
 

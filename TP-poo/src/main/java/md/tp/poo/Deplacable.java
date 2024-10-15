@@ -1,7 +1,7 @@
 package md.tp.poo;
 
 /**
- * Interface pour se déplacer.
+ * Interface de déplacement.
  * @author woota & mathi
  */
 

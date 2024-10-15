@@ -1,15 +1,14 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package md.tp.poo;
 
 /**
  *
- * @author woota
+ * @author woota & mathi
  */
 public class Poisson extends Nourriture {
     
+    //attributs
+    
+    //méthodes
     /**
      * Constructeur avec position, effet, durée et caractéristique.
      *
@@ -30,6 +29,7 @@ public class Poisson extends Nourriture {
     public Poisson(Poisson p) {
         super(p); 
     }
+    
     /**
      * Constructeur par défaut.
      */
@@ -37,6 +37,11 @@ public class Poisson extends Nourriture {
         super("Poisson");  
     }
     
+    /**
+     * fonction de retour d'une chaine de caractères décrivant le type et les attributs.
+     * @return 
+     */
+    @Override
     public String getTexteSauvegarde() {
         return this.typeNom + " " + position.getX() + " " + position.getY() + " " + this.getEffet() + " " + this.getDuree() + " " + this.getCaract();
     }
