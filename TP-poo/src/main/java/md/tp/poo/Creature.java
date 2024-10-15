@@ -1,15 +1,12 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package md.tp.poo;
 
 /**
- *
- * @author woota
+ * Classe qui représente une créature basique.
+ * @author woota & mathi
  */
 public abstract class Creature extends ElementDeJeu implements Deplacable {
     
+    //attributs
     protected String typeNom;
     protected int ptVie;
     protected int degAtt;
@@ -37,7 +34,6 @@ public abstract class Creature extends ElementDeJeu implements Deplacable {
         this.ptPar = pPar;
         this.pageAtt = paAtt;
         this.pagePar = paPar;
-
     }
 
     /**
@@ -54,68 +50,126 @@ public abstract class Creature extends ElementDeJeu implements Deplacable {
         this.pageAtt = c.pageAtt;
         this.pagePar = c.pagePar;
     }
-
+    
+    /**
+     * Constructeur par défault
+     * @param n 
+     */
     public Creature(String n) {
         super();
         this.typeNom = n;
     }
     
+    /**
+     * Constructeur à éviter (sans nom)
+     */
     public Creature() {
         super();
+        this.typeNom = "default";
     }
-
+    
+    /**
+     * fonction d'affichage des attributs successivement
+     */
     @Override
     public void affiche() {
         System.out.println(this.ptVie + ',' + this.degAtt + ','
                 + this.ptPar + ',' + this.pageAtt + ',' + this.pagePar);
         this.getPosition().affiche();
     }
-
+    
+    /**
+     * 
+     * @return 
+     */
     public String getTypeNom() {
         return typeNom;
     }
     
-
+    /**
+     * 
+     * @return 
+     */
     public int getPtVie() {
         return ptVie;
     }
-
+    
+    /**
+     * 
+     * @param ptVie 
+     */
     public void setPtVie(int ptVie) {
         this.ptVie = ptVie;
     }
-
+    
+    /**
+     * 
+     * @return 
+     */
     public int getDegAtt() {
         return degAtt;
     }
-
+    
+    /**
+     * 
+     * @param degAtt 
+     */
     public void setDegAtt(int degAtt) {
         this.degAtt = degAtt;
     }
-
+    
+    /**
+     * 
+     * @return 
+     */
     public int getPtPar() {
         return ptPar;
     }
-
+    
+    /**
+     * 
+     * @param ptPar 
+     */
     public void setPtPar(int ptPar) {
         this.ptPar = ptPar;
     }
-
+    
+    /**
+     * 
+     * @return 
+     */
     public int getPageAtt() {
         return pageAtt;
     }
-
+    
+    /**
+     * 
+     * @param pageAtt 
+     */
     public void setPageAtt(int pageAtt) {
         this.pageAtt = pageAtt;
     }
-
+    
+    /**
+     * 
+     * @return 
+     */
     public int getPagePar() {
         return pagePar;
     }
-
+    
+    /**
+     * 
+     * @param pagePar 
+     */
     public void setPagePar(int pagePar) {
         this.pagePar = pagePar;
     }
-
+    
+    /**
+     * 
+     * @param world 
+     */
     public void removeCreature(World world) {
         world.getCreatures().remove(this);
     }
