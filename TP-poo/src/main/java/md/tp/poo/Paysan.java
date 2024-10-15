@@ -1,9 +1,15 @@
 package md.tp.poo;
 
+/**
+ * Classe qui représnte un personnage basique
+ * @author mathi
+ */
+
 public class Paysan extends Personnage {
+    
+    //attributs
 
     //Méthodes
-
     /**
      * Constructeur avec paramètres
      *
@@ -28,7 +34,6 @@ public class Paysan extends Personnage {
      */
     public Paysan(Paysan p) {
         super(p);
-
     }
 
     /**

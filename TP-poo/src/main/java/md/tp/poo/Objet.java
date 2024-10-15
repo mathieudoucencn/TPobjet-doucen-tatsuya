@@ -1,24 +1,16 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package md.tp.poo;
 
 /**
- *
- * @author woota
- */
-
-
-/**
- * Classe abstraite qui représente un objet
+ * Classe qui représente un objet basique
+ * @author woota & mathi
  */
 
 public abstract class Objet extends ElementDeJeu{
     
+    //attributs    
     protected String typeNom;
 
-        
+    //méthodes
     /**
      * Constructeur avec position.
      *
@@ -56,25 +48,32 @@ public abstract class Objet extends ElementDeJeu{
     public Objet() {
         super();  
     }
-
-
     
-    public void affiche(){
-        
+    /**
+     * 
+     */
+    public void affiche(){ 
     }
     
+    /**
+     * fonction d'effacement de l'objet
+     * @param world 
+     */
     public void removeObjet(World world) {
         world.getObjets().remove(this);
     }
 
-    
     /**
      * Applique l'effet de l'objet sur un personnage
      * @param p Personnage cible
      */
     public abstract void utiliser(Personnage p);
     
-   public String getTexteSauvegarde() {
+    /**
+     * fonction de retour d'une chaine de caractères décrivant le type et les attributs.
+     * @return 
+     */
+    public String getTexteSauvegarde() {
         return this.typeNom + " " + position.getX() + " " + position.getY();
     }
 }
