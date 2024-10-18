@@ -323,6 +323,7 @@ public class World {
         }
         
         System.out.println("your position: " + joueur.getPersonnage().getPosition().getY() + "," + joueur.getPersonnage().getPosition().getX());
+        System.out.println("your remaining life points: " + joueur.getPersonnage().getPtVie());
         carte[joueur.getPersonnage().getPosition().getX()][joueur.getPersonnage().getPosition().getY()] = "J";
 
         for (Objet o : objets) {

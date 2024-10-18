@@ -104,7 +104,7 @@ public class Point2D {
      * Affiche les coordonnées du point.
      */
     public void affiche() {
-        System.out.println("[" + X + " ; " + Y + "]");
+        System.out.print("[" + X + " ; " + Y + "]");
     }
 
     /**

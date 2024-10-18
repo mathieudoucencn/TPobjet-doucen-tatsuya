@@ -3,6 +3,7 @@ package md.tp.poo;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.ArrayList;
 
 /**
  * Classe qui représente le joueur
@@ -130,14 +131,36 @@ public class Joueur {
     public void choisirCibleEtCombattre(World world) {
 
         Creature cible = null;
+        ArrayList<Creature> cibles = new ArrayList<>();
+        
+        //selection des cibles potentielles
         for (Creature c : world.getCreatures()) {
             if (c != personnage) {
                 double distance = personnage.getPosition().distance(c.getPosition());
                 if (distance <= personnage.getDistAttMax()) {
-                    cible = c;
+                    cibles.add(c);
                 }
             }
         }
+        
+        //choix de cible du joueur
+        System.out.println("Quelle cible voulez vous combattre?");
+        for (int i = 0; i < cibles.size();i++){
+            Creature x = cibles.get(i);
+            System.out.println(i + ". " + x.getTypeNom() + " " + (x.getPosition().getX()) + ", " + (x.getPosition().getY()));
+        }
+        InputStreamReader isr = new InputStreamReader(System.in);
+        BufferedReader br = new BufferedReader(isr);
+        int choix;
+        try {
+            choix = Integer.parseInt(br.readLine());
+        } catch (IOException | NumberFormatException e) {
+            System.out.println("Entree invalide.");
+            return;
+        }
+        cible = cibles.get(choix);
+        
+        //combat avec la cible
         if (cible != null) {
             String n = null;
             if (cible instanceof Personnage) {
