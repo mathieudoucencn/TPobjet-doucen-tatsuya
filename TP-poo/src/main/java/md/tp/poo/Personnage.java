@@ -171,7 +171,7 @@ public class Personnage extends Creature implements Combattant {
                 Utilisable item = (Utilisable) obj;
                 item.utiliser(this);
                 ajouterEffetActif(item);
-                System.out.println(this.nom + " a utilise : " + obj.toString());
+                System.out.println(this.nom + " a utilise : " + obj.getTypeNom());
                 obj.removeObjet(world);
             }
         }
@@ -253,6 +253,7 @@ public class Personnage extends Creature implements Combattant {
      * @param c La créature cible.
      * @param world
      */
+    @Override
     public void combattre(Creature c, World world) {
         Random alea = new Random();
         double distance = this.getPosition().distance(c.getPosition());
@@ -279,7 +280,7 @@ public class Personnage extends Creature implements Combattant {
                 if (c.getPtVie() <= 0) {
                     int i = world.getCreatures().indexOf(c);
                     System.out.println("vous avez vaincu " + c.getTypeNom() + " !");
-                    world.getCreatures().remove(i);
+                    this.removeCreature(c,world);
                 }
                 System.out.println(this.nom + "--->" + n + " : " + damage + "damage ");
                 System.out.println(n + " a " + c.getPtVie() + " PV restants");
