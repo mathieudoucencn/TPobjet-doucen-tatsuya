@@ -55,7 +55,6 @@ public class TestWoE {
         while (!gameOver) {
             world.afficheMonde();
             world.tourDeJeu();
-            System.out.println("test");
             world.deplace();
             if (world.getJouer().getPersonnage().getPtVie() <= 0) {
                 System.out.println("game over");

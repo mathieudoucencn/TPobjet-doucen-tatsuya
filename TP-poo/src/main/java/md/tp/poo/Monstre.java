@@ -7,7 +7,10 @@ import java.util.Random;
  *
  * @author mathi & woota
  */
-public class Monstre extends Creature {
+
+public class Monstre extends Creature implements Combattant {
+    
+    //attributs
 
     //attributs
     //Méthodes
@@ -79,10 +82,11 @@ public class Monstre extends Creature {
 
     /**
      * fonction de combat d'un monstre
-     *
-     * @param c
+     * @param c 
+     * @param world 
      */
-    public void combattre(Creature c,World world) {
+    @Override
+    public void combattre(Creature c, World world) {
 
         Random alea = new Random();
         double distance = this.getPosition().distance(c.getPosition());
@@ -108,11 +112,15 @@ public class Monstre extends Creature {
                 } else {
                     damage = this.degAtt - c.getPtPar();
                 }
-                if (c.getPtVie() - damage < 0) {
-                    c.setPtVie(c.getPtVie() - damage);
-                    this.removeCreature(world);
+
+                c.setPtVie(c.getPtVie() - damage);
+                if (c.getPtVie() <= 0) {
+                    int i = world.getCreatures().indexOf(c);
+                    System.out.println("vous avez vaincu " + c.getTypeNom() + " !");
+                    world.getCreatures().remove(i);
                 }
-                System.out.println(this.typeNom + "--->" + n + " : " + damage + "damage ");
+                System.out.println(this.getTypeNom() + "--->" + n + " : " + damage + "damage ");
+                System.out.println(n + " a " + c.getPtVie() + " PV restants");
             } else {
                 System.out.println(this.typeNom + "--->" + n + " : missed attack");
             }

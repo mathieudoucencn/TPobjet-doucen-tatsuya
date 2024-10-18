@@ -63,10 +63,11 @@ public class NuageToxique extends Objet implements Deplacable, Combattant {
         if (randAtt <= this.pageAtt) {
             if (c.getPtVie() - degAtt > 0) {
                 c.setPtVie(c.getPtVie() - degAtt);
+                System.out.println(n + " a " + c.getPtVie() + " PV restants");
             } else {
-                c.setPtVie(0);
-                this.removeObjet(world);
-                
+                int i = world.getCreatures().indexOf(c);
+                System.out.println(c.getTypeNom() + " est mort par intoxication");
+                world.getCreatures().remove(i);
             }
             System.out.println("Nuage toxique attaque la creature : " + n);
         } else {
@@ -79,8 +80,7 @@ public class NuageToxique extends Objet implements Deplacable, Combattant {
      * @param world 
      */
     @Override
-    public void deplace(World world
-    ) {
+    public void deplace(World world) {
 
         Random rand = new Random();
         int dx, dy;
@@ -95,7 +95,6 @@ public class NuageToxique extends Objet implements Deplacable, Combattant {
         } while (world.outside(newPos));
 
         this.setPosition(newPos);
-
     }
     
     /**

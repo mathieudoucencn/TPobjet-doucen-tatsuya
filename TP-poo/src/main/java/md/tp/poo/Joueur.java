@@ -114,7 +114,7 @@ public class Joueur {
                     System.out.println("Vous avez ramasse : " + obj.toString());
                     obj.removeObjet(world);
                 } else if (obj instanceof NuageToxique) {
-                    ((NuageToxique) obj).combattre(personnage,world);
+                    ((NuageToxique) obj).combattre(personnage, world);
                 }
             }
             personnage.mettreAJourEffets();
@@ -147,7 +147,7 @@ public class Joueur {
         System.out.println("Quelle cible voulez vous combattre?");
         for (int i = 0; i < cibles.size();i++){
             Creature x = cibles.get(i);
-            System.out.println(i + ". " + x.getTypeNom() + " " + (x.getPosition().getX()) + ", " + (x.getPosition().getY()));
+            System.out.println((i+1) + ". " + x.getTypeNom() + " " + (x.getPosition().getX()) + ", " + (x.getPosition().getY()));
         }
         InputStreamReader isr = new InputStreamReader(System.in);
         BufferedReader br = new BufferedReader(isr);
@@ -158,7 +158,7 @@ public class Joueur {
             System.out.println("Entree invalide.");
             return;
         }
-        cible = cibles.get(choix);
+        cible = cibles.get(choix - 1);
         
         //combat avec la cible
         if (cible != null) {
@@ -171,10 +171,6 @@ public class Joueur {
                 n = m.getTypeNom();
             }
             personnage.combattre(cible,world);
-            if (cible.getPtVie() <= 0) {
-                System.out.println(n + "a ete vaincu");
-                cible.removeCreature(world);
-            }
         } else {
             System.out.println("Aucune cible");
         }
