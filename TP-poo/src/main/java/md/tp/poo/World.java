@@ -355,6 +355,7 @@ public class World {
         switch (choix) {
             case 1:
                 joueur.deplace(this);
+                updatePos();
                 break;
             case 2:
                 joueur.choisirCibleEtCombattre(this);
