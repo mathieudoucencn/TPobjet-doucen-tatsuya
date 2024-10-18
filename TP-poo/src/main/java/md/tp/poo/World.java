@@ -46,39 +46,7 @@ public class World {
     }
     
     /**
-     * 
-     * @return 
-     */
-    public ArrayList<Creature> getCreatures() {
-        return creatures;
-    }
-    
-    /**
-     * 
-     * @return 
-     */
-    public ArrayList<Objet> getObjets() {
-        return objets;
-    }
-    
-    /**
-     * 
-     * @return 
-     */
-    public ArrayList<Point2D> getPositions() {
-        return positions;
-    }
-    
-    /**
-     * 
-     * @return 
-     */
-    public String[][] getCarte() {
-        return this.carte;
-    }
-    
-    /**
-     * 
+     * pour savoir si une position est occupée par une créature
      * @param p
      * @return 
      */
@@ -92,7 +60,7 @@ public class World {
     }
     
     /**
-     * 
+     * pour mettre à jour la liste des positions occupées
      */
     public void updatePos() {
         positions.clear();
@@ -111,7 +79,7 @@ public class World {
     }
     
     /**
-     * 
+     * pour savoir si une position est occupée
      * @param p
      * @return 
      */
@@ -125,7 +93,7 @@ public class World {
     }
     
     /**
-     * 
+     * pour savoir si un objet occupe la position p
      * @param p
      * @return 
      */
@@ -139,14 +107,14 @@ public class World {
     }
     
     /**
-     * 
+     * pour savoir si la position p est à l'exterieur des limites du monde
      * @param p
      * @return 
      */
     public boolean outside(Point2D p) {
         return p.getX() >= hauteur || p.getY() >= largeur || p.getX() < 0 || p.getY() < 0;
     }
-
+    
     /**
      * Retourne l'objet présent à une position donnée
      *
@@ -163,7 +131,7 @@ public class World {
     }
     
     /**
-     * 
+     * Pour créer un joueur
      * @param nom 
      */
     public void creationJouer(String nom) {
@@ -205,7 +173,7 @@ public class World {
     }
 
     /**
-     * Création aléatoire du monde avec créatures et objets
+     * Création aléatoire du monde avec créatures aléatoires et objets idem
      */
     public void creerMondeAlea() {
         Random rand = new Random();
@@ -414,7 +382,7 @@ public class World {
     }
     
     /**
-     * 
+     * fonction de déplacement aléatoire de toutes les entités non gérées par le joueur
      */
     public void deplace() {
 
@@ -739,5 +707,36 @@ public class World {
     public void setJouer(Joueur jouer) {
         this.joueur = jouer;
     }
-
+    
+    /**
+     * 
+     * @return 
+     */
+    public ArrayList<Creature> getCreatures() {
+        return creatures;
+    }
+    
+    /**
+     * 
+     * @return 
+     */
+    public ArrayList<Objet> getObjets() {
+        return objets;
+    }
+    
+    /**
+     * 
+     * @return 
+     */
+    public ArrayList<Point2D> getPositions() {
+        return positions;
+    }
+    
+    /**
+     * 
+     * @return 
+     */
+    public String[][] getCarte() {
+        return this.carte;
+    }
 }
