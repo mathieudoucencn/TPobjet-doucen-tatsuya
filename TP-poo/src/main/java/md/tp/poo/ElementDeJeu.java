@@ -49,6 +49,9 @@ public abstract class ElementDeJeu {
     public void setPosition(Point2D position) {
         this.position = position;
     }
-
+    
+    /**
+     * 
+     */
     public abstract void affiche();
 }
