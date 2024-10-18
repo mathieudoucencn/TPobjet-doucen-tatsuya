@@ -5,7 +5,7 @@ package md.tp.poo;
  * @author woota & mathi
  */
 
-public class Loup extends Monstre implements Combattant {
+public class Loup extends Monstre  {
     
     //attributs
     

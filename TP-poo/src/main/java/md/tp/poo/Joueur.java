@@ -114,7 +114,7 @@ public class Joueur {
                     System.out.println("Vous avez ramasse : " + obj.toString());
                     obj.removeObjet(world);
                 } else if (obj instanceof NuageToxique) {
-                    ((NuageToxique) obj).combattre(personnage);
+                    ((NuageToxique) obj).combattre(personnage,world);
                 }
             }
             personnage.mettreAJourEffets();
@@ -170,7 +170,7 @@ public class Joueur {
                 Monstre m = (Monstre) cible;
                 n = m.getTypeNom();
             }
-            personnage.combattre(cible);
+            personnage.combattre(cible,world);
             if (cible.getPtVie() <= 0) {
                 System.out.println(n + "a ete vaincu");
                 cible.removeCreature(world);

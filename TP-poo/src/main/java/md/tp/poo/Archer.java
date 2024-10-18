@@ -4,14 +4,14 @@ import java.util.Random;
 
 /**
  * Classe qui représente un archer.
+ *
  * @author mathi & woota
  */
-
 public class Archer extends Personnage implements Combattant {
 
     //attributs
     private int nbFleches;
-    
+
     //méthodes
     /**
      * Constructeur avec paramètres
@@ -28,12 +28,13 @@ public class Archer extends Personnage implements Combattant {
      *
      */
     public Archer(String nom, int pv, int dA, int pPar, int paAtt, int paPar, int dMax, Point2D p, int nbf) {
-        super("Archer",nom, pv, dA, pPar, paAtt, paPar, dMax, p);
+        super("Archer", nom, pv, dA, pPar, paAtt, paPar, dMax, p);
         this.nbFleches = nbf;
     }
 
     /**
      * Constructeur par copie
+     *
      * @param a Archer a copier
      *
      */
@@ -44,34 +45,35 @@ public class Archer extends Personnage implements Combattant {
 
     /**
      * Constructeur par defaut
-     * 
+     *
      */
     public Archer() {
         super("Archer");
     }
-    
+
     /**
-     * 
-     * @return 
+     *
+     * @return
      */
     public int getNbFleches() {
         return nbFleches;
     }
-    
+
     /**
-     * 
-     * @param nbFleches 
+     *
+     * @param nbFleches
      */
     public void setNbFleches(int nbFleches) {
         this.nbFleches = nbFleches;
     }
-    
+
     /**
      * combat à distance!
-     * @param c 
+     *
+     * @param c
      */
     @Override
-    public void combattre(Creature c) {
+    public void combattre(Creature c, World world) {
 
         Random alea = new Random();
         double distance = this.getPosition().distance(c.getPosition());
@@ -85,7 +87,7 @@ public class Archer extends Personnage implements Combattant {
         }
 
         if (distance <= 1) {
-            super.combattre(c);
+            super.combattre(c,world);
         } else if (distance < this.distAttMax) {
 
             if (this.getNbFleches() > 0) {
@@ -103,7 +105,10 @@ public class Archer extends Personnage implements Combattant {
                         damage = this.degAtt - c.getPtPar();
                     }
 
-                    c.setPtVie(c.getPtVie() - damage);
+                    if (c.getPtVie() - damage < 0) {
+                        c.setPtVie(c.getPtVie() - damage);
+                        this.removeCreature(world);
+                    }
                     System.out.println(this.nom + "--->" + n + " : " + damage + "damage ");
                 } else {
                     System.out.println(this.nom + "--->" + n + " : missed shooting ");
@@ -117,14 +122,16 @@ public class Archer extends Personnage implements Combattant {
         }
 
     }
-    
+
     /**
-     * fonction de retour d'une chaine de caractères décrivant le type et les attributs.
-     * @return 
+     * fonction de retour d'une chaine de caractères décrivant le type et les
+     * attributs.
+     *
+     * @return
      */
     @Override
     public String getTexteSauvegarde() {
-        return  this.typeNom + " " + this.nom + " " + this.ptVie + " " + this.degAtt + " " + this.ptPar + " " + this.pageAtt
+        return this.typeNom + " " + this.nom + " " + this.ptVie + " " + this.degAtt + " " + this.ptPar + " " + this.pageAtt
                 + " " + this.pagePar + " " + this.distAttMax + " " + this.position.getX() + " " + this.position.getY() + " " + this.getNbFleches();
     }
 

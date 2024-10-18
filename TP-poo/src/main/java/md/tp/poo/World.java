@@ -276,11 +276,11 @@ public class World {
                     int dureeEpinard = rand.nextInt(3) + 1;
                     int effet = rand.nextInt(20) + 10;
                     if (bonusOrMalus == 0) {
-                        Eau epi = new Eau(pt, effet, dureeEpinard, "degAtt");// Bonus
-                        objets.add(epi);
+                        Eau eau = new Eau(pt, effet, dureeEpinard, "degAtt");// Bonus
+                        objets.add(eau);
                     } else {
-                        Eau epi = new Eau(pt, -effet, dureeEpinard, "degAtt");//Malus
-                        objets.add(epi);
+                        Eau eau = new Eau(pt, -effet, dureeEpinard, "degAtt");//Malus
+                        objets.add(eau);
                     }
                     break;
                 case 3:
@@ -322,8 +322,6 @@ public class World {
 
         }
         
-        System.out.println("your position: " + joueur.getPersonnage().getPosition().getY() + "," + joueur.getPersonnage().getPosition().getX());
-        System.out.println("your remaining life points: " + joueur.getPersonnage().getPtVie());
         carte[joueur.getPersonnage().getPosition().getX()][joueur.getPersonnage().getPosition().getY()] = "J";
 
         for (Objet o : objets) {
@@ -335,11 +333,26 @@ public class World {
             } else if (o instanceof PotionSoin) {
                 carte[x][y] = "S";
             } else if (o instanceof Eau) {
-                carte[x][y] = "E";
+                carte[x][y] = "W";
             } else if (o instanceof NuageToxique) {
                 carte[x][y] = "%";
             }
         }
+        
+       
+        System.out.println("----------------------------CARACTERISTIQUES-------------------------------");
+        System.out.println("OBJETS  --->  S:PotionSoin, E:Epee, W:Eau, %:NuageToxique ");
+        System.out.println("PERSONNAGES  --->  A:Archer, G:Guerrier, P:Paysan");
+        System.out.println("MONSTRES  --->  B:Lapin, L:Loup");
+        System.out.println("---------------------------------------------------------------------------");
+        System.out.println();
+        
+        System.out.println("----------------------------"+ joueur.getPersonnage().getNom() + "-----------------------------------");
+        System.out.println("your position: " + joueur.getPersonnage().getPosition().getY() + "," + joueur.getPersonnage().getPosition().getX());
+        System.out.println("your remaining life points: " + joueur.getPersonnage().getPtVie());
+        System.out.println("-------------------------------------------------------------------------------");
+
+         
 
         for (int i = 0; i < hauteur; i++) {
             for (int j = 0; j < largeur; j++) {

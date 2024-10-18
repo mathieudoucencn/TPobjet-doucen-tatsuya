@@ -52,7 +52,7 @@ public class Epee extends Objet implements Utilisable {
         if (p instanceof Guerrier) {
             ((Guerrier) p).setBonusArme(this.valDam);
         } else {
-            System.out.println("ce personnage ne sait pas utiliser cette arme...");
+            System.out.println(p.getNom() + "a trouve epee mais ne sait pas utiliser cette arme...");
         }
     }
     

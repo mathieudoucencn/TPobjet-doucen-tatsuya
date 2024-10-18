@@ -64,7 +64,7 @@ public class Guerrier extends Personnage implements Combattant {
      * @param c 
      */
     @Override
-    public void combattre(Creature c) {
+    public void combattre(Creature c,World world) {
 
         Random alea = new Random();
         double distance = this.getPosition().distance(c.getPosition());
@@ -88,7 +88,10 @@ public class Guerrier extends Personnage implements Combattant {
                 } else {
                     damage = this.getDegAtt() + this.getBonusArme() - c.getPtPar();
                 }
-                c.setPtVie(c.getPtVie() - damage);
+                if(c.getPtVie() - damage < 0){
+                    c.setPtVie(c.getPtVie() - damage);
+                    this.removeCreature(world);
+                }
                 System.out.println(this.getNom() + "--->" + n + " : " + damage + "damage ");
             } else {
                 System.out.println(this.getNom() + "--->" + n + " : missed attack");

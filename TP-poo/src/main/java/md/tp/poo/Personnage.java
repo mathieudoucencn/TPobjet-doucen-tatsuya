@@ -158,7 +158,6 @@ public class Personnage extends Creature implements Combattant {
             int newX = this.getPosition().getX() + dx;
             int newY = this.getPosition().getY() + dy;
             newPos = new Point2D(newX, newY);
-            System.out.println("dans la boucle");
         } while (world.outside(newPos) || world.creaEstOccupee(newPos) || (newPos.equals(world.getJouer().getPersonnage().getPosition())));
 
         this.getPosition().translate(dx, dy);
@@ -166,7 +165,7 @@ public class Personnage extends Creature implements Combattant {
 
         if (obj != null) {
             if (obj instanceof NuageToxique) {
-                ((NuageToxique) obj).combattre(this);
+                ((NuageToxique) obj).combattre(this,world);
             } else if (obj instanceof Utilisable) {
 
                 Utilisable item = (Utilisable) obj;
@@ -252,9 +251,10 @@ public class Personnage extends Creature implements Combattant {
      * Combat contre une autre créature.
      *
      * @param c La créature cible.
+     * @param world
      */
     @Override
-    public void combattre(Creature c) {
+    public void combattre(Creature c, World world) {
         Random alea = new Random();
         double distance = this.getPosition().distance(c.getPosition());
 
@@ -276,7 +276,12 @@ public class Personnage extends Creature implements Combattant {
                 } else {
                     damage = this.degAtt - c.getPtPar();
                 }
-                c.setPtVie(c.getPtVie() - damage);
+                if(c.getPtVie() - damage < 0){
+                    c.setPtVie(c.getPtVie() - damage);
+                    this.removeCreature(world);
+                }
+                
+                
                 System.out.println(this.nom + "--->" + n + " : " + damage + " damage ");
             } else {
                 System.out.println(this.nom + "--->" + n + " : missed attack");

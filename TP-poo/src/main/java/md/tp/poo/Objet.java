@@ -60,7 +60,8 @@ public abstract class Objet extends ElementDeJeu{
      * @param world 
      */
     public void removeObjet(World world) {
-        world.getObjets().remove(this);
+        int i = world.getObjets().indexOf(this);
+        world.getObjets().remove(i);
     }
 
     /**

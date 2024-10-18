@@ -4,13 +4,12 @@ import java.util.Random;
 
 /**
  * Classe qui représente un monstre basique
+ *
  * @author mathi & woota
  */
-
 public class Monstre extends Creature {
-    
-    //attributs
 
+    //attributs
     //Méthodes
     /**
      * Constructeur avec paramètres
@@ -45,27 +44,29 @@ public class Monstre extends Creature {
     public Monstre(String n) {
         super(n);
     }
-    
+
     /**
      * fonction de déplacement d'un monstre
-     * @param world 
+     *
+     * @param world
      */
     @Override
     public void deplace(World world) {
         //déplacement aléatoire
         Random rand = new Random();
-        int dx = 0; int dy = 0;
+        int dx = 0;
+        int dy = 0;
         Point2D newPos;
         int alea = rand.nextInt(2);
-        
+
         do {
             //pas de déplacement en diagonale
-            if (alea == 1){
+            if (alea == 1) {
                 dx = rand.nextInt(3) - 1;
             } else {
                 dy = rand.nextInt(3) - 1;
             }
-            
+
             int newX = this.getPosition().getX() + dx;
             int newY = this.getPosition().getY() + dy;
 
@@ -75,17 +76,17 @@ public class Monstre extends Creature {
 
         this.getPosition().translate(dx, dy);
     }
-    
+
     /**
      * fonction de combat d'un monstre
-     * @param c 
+     *
+     * @param c
      */
-    public void combattre(Creature c) {
+    public void combattre(Creature c,World world) {
 
         Random alea = new Random();
         double distance = this.getPosition().distance(c.getPosition());
 
-        
         String n = null;
         if (c instanceof Personnage) {
             Personnage p = (Personnage) c;
@@ -93,7 +94,7 @@ public class Monstre extends Creature {
         } else if (c instanceof Monstre) {
             n = c.getTypeNom();
         }
-        
+
         if (distance <= 1) {
 
             int randAtt = alea.nextInt(100) + 1;
@@ -107,8 +108,10 @@ public class Monstre extends Creature {
                 } else {
                     damage = this.degAtt - c.getPtPar();
                 }
-
-                c.setPtVie(c.getPtVie() - damage);
+                if (c.getPtVie() - damage < 0) {
+                    c.setPtVie(c.getPtVie() - damage);
+                    this.removeCreature(world);
+                }
                 System.out.println(this.typeNom + "--->" + n + " : " + damage + "damage ");
             } else {
                 System.out.println(this.typeNom + "--->" + n + " : missed attack");
@@ -119,13 +122,15 @@ public class Monstre extends Creature {
         }
 
     }
-    
+
     /**
-     * fonction de retour d'une chaine de caractères décrivant le type et les attributs.
-     * @return 
+     * fonction de retour d'une chaine de caractères décrivant le type et les
+     * attributs.
+     *
+     * @return
      */
     public String getTexteSauvegarde() {
-        return  this.typeNom + " " + this.ptVie + " " + this.degAtt + " " + this.ptPar + " " + this.pageAtt+
-               " " + this.pagePar + " " + this.position.getX() + " " + this.position.getY();
+        return this.typeNom + " " + this.ptVie + " " + this.degAtt + " " + this.ptPar + " " + this.pageAtt
+                + " " + this.pagePar + " " + this.position.getX() + " " + this.position.getY();
     }
 }

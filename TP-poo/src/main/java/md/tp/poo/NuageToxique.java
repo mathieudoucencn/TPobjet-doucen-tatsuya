@@ -48,7 +48,7 @@ public class NuageToxique extends Objet implements Deplacable, Combattant {
      * @param c 
      */
     @Override
-    public void combattre(Creature c) {
+    public void combattre(Creature c, World world) {
         Random alea = new Random();
         int randAtt = alea.nextInt(100) + 1;
         
@@ -65,6 +65,8 @@ public class NuageToxique extends Objet implements Deplacable, Combattant {
                 c.setPtVie(c.getPtVie() - degAtt);
             } else {
                 c.setPtVie(0);
+                this.removeObjet(world);
+                
             }
             System.out.println("Nuage toxique attaque la creature : " + n);
         } else {
