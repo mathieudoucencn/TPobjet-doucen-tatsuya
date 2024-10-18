@@ -342,7 +342,8 @@ public class World {
         System.out.println("1 - Se deplacer");
         System.out.println("2 - Combattre");
         System.out.println("3 - Utiliser un objet");
-        System.out.println("4 - Quitter et sauvegarder");
+        System.out.println("4 - Attendre");
+        System.out.println("5 - Quitter et sauvegarder");
 
         int choix;
         try {
@@ -363,6 +364,8 @@ public class World {
                 joueur.utiliserObjet();
                 break;
             case 4:
+                break;
+            case 5:
                 String input = null;
                 System.out.println("sous quel nom?");
                 try {
