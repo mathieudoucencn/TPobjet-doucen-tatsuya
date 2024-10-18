@@ -65,6 +65,7 @@ public class NuageToxique extends Objet implements Deplacable, Combattant {
                 c.setPtVie(c.getPtVie() - degAtt);
                 System.out.println(n + " a " + c.getPtVie() + " PV restants");
             } else {
+                c.setPtVie(0);
                 int i = world.getCreatures().indexOf(c);
                 System.out.println(c.getTypeNom() + " est mort par intoxication");
                 world.getCreatures().remove(i);

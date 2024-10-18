@@ -15,7 +15,7 @@ public class TestWoE {
         World world = new World();
         
         //chargement ou non
-        System.out.println("Voulez vous charger un monde?");
+        System.out.println("Voulez vous charger un monde?(Jouer et sauvegarder pour le premiere essai)");
         System.out.println("Oui: 1, Non: 2");
         
         //récuperation du choix du joueur

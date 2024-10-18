@@ -111,7 +111,7 @@ public class Joueur {
             if (obj != null) {
                 if (obj instanceof Utilisable) {
                     this.getInventaire().ajouterObjet((Utilisable) obj);
-                    System.out.println("Vous avez ramasse : " + obj.toString());
+                    System.out.println("Vous avez ramasse : " + obj.getTypeNom());
                     obj.removeObjet(world);
                 } else if (obj instanceof NuageToxique) {
                     ((NuageToxique) obj).combattre(personnage, world);

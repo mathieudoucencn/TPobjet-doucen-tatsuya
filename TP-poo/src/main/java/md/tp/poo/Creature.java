@@ -165,5 +165,10 @@ public abstract class Creature extends ElementDeJeu implements Deplacable {
     public void setPagePar(int pagePar) {
         this.pagePar = pagePar;
     }
+    
+    public void removeCreature(Creature c, World world){
+        int i = world.getCreatures().indexOf(c);
+        world.getCreatures().remove(i);
+    }
 
 }

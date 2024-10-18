@@ -64,6 +64,11 @@ public abstract class Objet extends ElementDeJeu{
         world.getObjets().remove(i);
     }
 
+    public String getTypeNom() {
+        return typeNom;
+    }
+    
+
     /**
      * Applique l'effet de l'objet sur un personnage
      * @param p Personnage cible

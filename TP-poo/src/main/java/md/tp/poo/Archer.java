@@ -107,9 +107,10 @@ public class Archer extends Personnage implements Combattant {
 
                     c.setPtVie(c.getPtVie() - damage);
                     if (c.getPtVie() <= 0) {
+                        c.setPtVie(0);
                         int i = world.getCreatures().indexOf(c);
                         System.out.println("vous avez vaincu " + c.getTypeNom() + " !");
-                        world.getCreatures().remove(i);
+                        this.removeCreature(c,world);
                     }
                     System.out.println(this.nom + "--->" + n + " : " + damage + "damage ");
                     System.out.println(n + " a " + c.getPtVie() + " PV restants");
