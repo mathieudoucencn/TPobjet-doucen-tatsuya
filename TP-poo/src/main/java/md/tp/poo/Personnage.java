@@ -143,16 +143,22 @@ public class Personnage extends Creature implements Combattant {
      */
     @Override
     public void deplace(World world) {
+        //déplacement aléatoire
         Random rand = new Random();
-        int dx, dy;
+        int dx = 0; int dy = 0;
         Point2D newPos;
 
         do {
-            dx = rand.nextInt(3) - 1;
-            dy = rand.nextInt(3) - 1;
+            //pas de déplacement en diagonale
+            if (rand.nextInt(2) == 1){
+                dx = rand.nextInt(3) - 1;
+            } else {
+                dy = rand.nextInt(3) - 1;
+            }
             int newX = this.getPosition().getX() + dx;
             int newY = this.getPosition().getY() + dy;
             newPos = new Point2D(newX, newY);
+            System.out.println("dans la boucle");
         } while (world.outside(newPos) || world.creaEstOccupee(newPos) || (newPos.equals(world.getJouer().getPersonnage().getPosition())));
 
         this.getPosition().translate(dx, dy);

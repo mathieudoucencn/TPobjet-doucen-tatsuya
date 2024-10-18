@@ -52,18 +52,20 @@ public class Monstre extends Creature {
      */
     @Override
     public void deplace(World world) {
-
+        //déplacement aléatoire
         Random rand = new Random();
-
-        int dx, dy;
-
+        int dx = 0; int dy = 0;
         Point2D newPos;
-
+        int alea = rand.nextInt(2);
+        
         do {
-
-            dx = rand.nextInt(3) - 1;
-            dy = rand.nextInt(3) - 1;
-
+            //pas de déplacement en diagonale
+            if (alea == 1){
+                dx = rand.nextInt(3) - 1;
+            } else {
+                dy = rand.nextInt(3) - 1;
+            }
+            
             int newX = this.getPosition().getX() + dx;
             int newY = this.getPosition().getY() + dy;
 
